@@ -21,6 +21,6 @@ Auth::routes([
     'reset' => true,
 ]);
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
