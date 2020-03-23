@@ -23,6 +23,15 @@ Auth::routes([
 
 Route::redirect('/', '/login');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'Admin',
+    'middleware' => 'auth'
+], function () {
+    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // Users
+    Route::resource('/users', 'UserController');
 });
