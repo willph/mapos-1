@@ -209,10 +209,16 @@ return [
 
     'menu' => [
         [
-            'text' => 'Dashboard',
-            'route'  => 'dashboard.index',
+            'text' => 'dashboard',
+            'route'  => 'admin.dashboard.index',
             'icon' => 'fas fa-fw fa-home',
-            'active' => ['admin']
+            'active' => ['admin/dashboard']
+        ],
+        [
+            'text' => 'users',
+            'route'  => 'admin.users.index',
+            'icon' => 'fas fa-fw fa-user',
+            'active' => ['admin/users', 'admin/users/*']
         ],
     ],
 
