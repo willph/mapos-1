@@ -33,7 +33,6 @@ class CustomerControllerTest extends TestCase
         $response->assertViewHas('customers');
     }
 
-
     /**
      * @test
      */
@@ -48,7 +47,6 @@ class CustomerControllerTest extends TestCase
         $response->assertViewIs('admin.customers.create');
         $response->assertViewHas('customer');
     }
-
 
     /**
      * @test
@@ -115,7 +113,6 @@ class CustomerControllerTest extends TestCase
         $response->assertRedirect(route('admin.customers.index'));
     }
 
-
     /**
      * @test
      */
@@ -133,7 +130,6 @@ class CustomerControllerTest extends TestCase
         $response->assertViewHas('customer');
     }
 
-
     /**
      * @test
      */
@@ -150,7 +146,6 @@ class CustomerControllerTest extends TestCase
         $response->assertViewIs('admin.customers.edit');
         $response->assertViewHas('customer');
     }
-
 
     /**
      * @test
@@ -217,7 +212,6 @@ class CustomerControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.customers.index'));
     }
-
 
     /**
      * @test

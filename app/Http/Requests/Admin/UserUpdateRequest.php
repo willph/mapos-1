@@ -26,7 +26,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|min:5',
             'email' => 'required|string|email',
-            'password' => 'sometimes|string|confirmed|min:8|nullable'
+            'password' => 'sometimes|string|confirmed|min:8|nullable',
         ];
     }
 }

@@ -62,8 +62,8 @@ class UserControllerTest extends TestCase
     {
         $loggedUser = factory(User::class)->create();
         $email = $this->faker->safeEmail;
-        $name = "test_name";
-        $password = "test_password";
+        $name = 'test_name';
+        $password = 'test_password';
 
         $response = $this
             ->actingAs($loggedUser)
@@ -136,8 +136,8 @@ class UserControllerTest extends TestCase
         $loggedUser = factory(User::class)->create();
         $user = factory(User::class)->create();
         $email = $this->faker->safeEmail;
-        $name = "test_name";
-        $password = "test_password";
+        $name = 'test_name';
+        $password = 'test_password';
 
         $response = $this->actingAs($user)
             ->put(route('admin.users.update', $user), [

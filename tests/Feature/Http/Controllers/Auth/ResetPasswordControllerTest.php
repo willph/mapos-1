@@ -18,7 +18,7 @@ class ResetPasswordControllerTest extends TestCase
     public function it_displays_the_reset_password_form()
     {
         $response = $this->get(route('password.reset', [
-            'token' => 'token'
+            'token' => 'token',
         ]));
 
         $response->assertStatus(200);

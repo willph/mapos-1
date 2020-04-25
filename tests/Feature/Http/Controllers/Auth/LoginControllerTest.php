@@ -35,7 +35,7 @@ class LoginControllerTest extends TestCase
 
         $response = $this->post(route('login'), [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertRedirect(route('admin.dashboard.index'));

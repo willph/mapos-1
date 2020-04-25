@@ -41,7 +41,7 @@ class ConfirmPasswordControllerTest extends TestCase
             ->from('admin.dashboard')
             ->actingAs($user)
             ->post(route('password.confirm'), [
-                'password' => 'password'
+                'password' => 'password',
             ]);
 
         $response->assertStatus(302);

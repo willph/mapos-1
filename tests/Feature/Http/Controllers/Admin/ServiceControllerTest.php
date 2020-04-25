@@ -48,7 +48,6 @@ class ServiceControllerTest extends TestCase
         $response->assertViewHas('service');
     }
 
-
     /**
      * @test
      */
@@ -108,7 +107,6 @@ class ServiceControllerTest extends TestCase
         $response->assertViewIs('admin.services.show');
         $response->assertViewHas('service');
     }
-
 
     /**
      * @test
