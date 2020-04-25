@@ -4,167 +4,182 @@ namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
+/**
+ * @see \App\Http\Controllers\Admin\UserController
+ */
 class UserControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use AdditionalAssertions, RefreshDatabase, WithFaker;
 
-    /** @test */
-    public function it_displays_user_list()
+    /**
+     * @test
+     */
+    public function index_displays_view()
     {
-        $user = factory(User::class)->create();
+        $loggedUser = factory(User::class)->create();
+        $users = factory(User::class, 3)->create();
 
-        $response = $this->actingAs($user)->get(route('admin.users.index'));
+        $response = $this->actingAs($loggedUser)->get(route('admin.users.index'));
 
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertViewIs('admin.users.index');
+        $response->assertViewHas('users');
     }
 
-    /** @test */
-    public function it_displays_a_specific_user()
+
+    /**
+     * @test
+     */
+    public function create_displays_view()
     {
-        $user = factory(User::class)->create();
+        $loggedUser = factory(User::class)->create();
+        $response = $this->actingAs($loggedUser)->get(route('admin.users.create'));
 
-        $response = $this->actingAs($user)->get(route('admin.users.show', $user->getKey()));
-
-        $response->assertStatus(200);
-        $response->assertViewIs('admin.users.show');
-        $response->assertViewHas('user', function ($loadedUser) use ($user) {
-            return $loadedUser->getKey() === $user->getKey();
-        });
-    }
-
-    /** @test */
-    public function it_displays_user_create_form()
-    {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->get(route('admin.users.create'));
-
-        $response->assertStatus(200);
+        $response->assertOk();
         $response->assertViewIs('admin.users.create');
+        $response->assertViewHas('user');
     }
 
-    /** @test */
-    public function it_displays_validation_errors_on_create()
+
+    /**
+     * @test
+     */
+    public function store_uses_form_request_validation()
     {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->post(route('admin.users.store'), []);
-
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['email', 'name', 'password']);
+        $this->assertActionUsesFormRequest(
+            \App\Http\Controllers\Admin\UserController::class,
+            'store',
+            \App\Http\Requests\Admin\UserStoreRequest::class
+        );
     }
 
-    /** @test */
-    public function it_creates_a_user_and_redirects()
+    /**
+     * @test
+     */
+    public function store_saves_and_redirects()
     {
-        $user = factory(User::class)->create();
+        $loggedUser = factory(User::class)->create();
+        $email = $this->faker->safeEmail;
+        $name = "test_name";
+        $password = "test_password";
 
-        $response = $this->actingAs($user)->post(route('admin.users.store'), [
-            'name' => 'Teste Teste',
-            'email' => 'teste@teste.com',
-            'password' => 'teste123',
-            'password_confirmation' => 'teste123',
-        ]);
+        $response = $this
+            ->actingAs($loggedUser)
+            ->post(route('admin.users.store'), [
+                'name' => $name,
+                'email' => $email,
+                'password' => $password,
+                'password_confirmation' => $password,
+            ]);
 
         $response->assertStatus(302);
+
+        $users = User::query()
+            ->where('name', $name)
+            ->where('email', $email)
+            ->get();
+
+        $this->assertCount(1, $users);
+
         $response->assertRedirect(route('admin.users.index'));
-        $this->assertDatabaseHas('users', [
-            'name' => 'Teste Teste',
-            'email' => 'teste@teste.com',
-        ]);
     }
 
-    /** @test */
-    public function it_displays_user_edit_form()
+
+    /**
+     * @test
+     */
+    public function show_displays_view()
     {
+        $loggedUser = factory(User::class)->create();
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->get(route('admin.users.edit', [
-            'user' => $user->getKey(),
-        ]));
+        $response = $this->actingAs($loggedUser)->get(route('admin.users.show', $user));
 
-        $response->assertStatus(200);
+        $response->assertOk();
+        $response->assertViewIs('admin.users.show');
+        $response->assertViewHas('user');
+    }
+
+
+    /**
+     * @test
+     */
+    public function edit_displays_view()
+    {
+        $loggedUser = factory(User::class)->create();
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($loggedUser)->get(route('admin.users.edit', $user));
+
+        $response->assertOk();
         $response->assertViewIs('admin.users.edit');
+        $response->assertViewHas('user');
     }
 
-    /** @test */
-    public function it_displays_validation_errors_on_edit()
+
+    /**
+     * @test
+     */
+    public function update_uses_form_request_validation()
     {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->put(route('admin.users.update', [
-                'user' => $user->getKey(),
-        ]), []);
-
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['email', 'name']);
+        $this->assertActionUsesFormRequest(
+            \App\Http\Controllers\Admin\UserController::class,
+            'update',
+            \App\Http\Requests\Admin\UserUpdateRequest::class
+        );
     }
 
-    /** @test */
-    public function it_displays_password_validation_errors_on_edit()
+    /**
+     * @test
+     */
+    public function update_saves_and_redirects()
     {
+        $loggedUser = factory(User::class)->create();
         $user = factory(User::class)->create();
+        $email = $this->faker->safeEmail;
+        $name = "test_name";
+        $password = "test_password";
 
-        $response = $this->actingAs($user)->put(route('admin.users.update', [
-            'user' => $user->getKey(),
-        ]), [
-            'password' => 'small',
-        ]);
+        $response = $this->actingAs($user)
+            ->put(route('admin.users.update', $user), [
+                'name' => $name,
+                'email' => $email,
+                'password' => $password,
+                'password_confirmation' => $password,
+            ]);
 
         $response->assertStatus(302);
-        $response->assertSessionHasErrors(['password']);
-    }
 
-    /** @test */
-    public function it_updates_a_user_and_redirects()
-    {
-        $user = factory(User::class)->create();
+        $users = User::query()
+            ->where('name', $name)
+            ->where('email', $email)
+            ->get();
+        $this->assertCount(1, $users);
+        $user = $users->first();
 
-        $response = $this->actingAs($user)->put(route('admin.users.update', [
-            'user' => $user->getKey(),
-        ]), [
-            'name' => 'New name',
-            'email' => 'mail@mail.com',
-        ]);
-
-        $response->assertStatus(302);
         $response->assertRedirect(route('admin.users.index'));
-        $this->assertEquals('New name', $user->fresh()->name);
-        $this->assertEquals('mail@mail.com', $user->fresh()->email);
     }
 
-    /** @test */
-    public function it_can_deletes_a_user()
+    /**
+     * @test
+     */
+    public function destroy_deletes()
     {
-        [$user, $userToDelete] = factory(User::class, 2)->create();
-
-        $response = $this->actingAs($user)->delete(route('admin.users.destroy', [
-            'user' => $userToDelete->getKey()
-        ]));
-
-        $response->assertStatus(200);
-        $response->assertJson([
-            'email' => $userToDelete->email,
-            'name' => $userToDelete->name,
-        ]);
-        $this->assertDatabaseMissing('users', [
-           'email' => $userToDelete->email,
-           'name' => $userToDelete->name,
-        ]);
-    }
-
-    /** @test */
-    public function it_cant_deletes_a_nonexistent_user()
-    {
+        $loggedUser = factory(User::class)->create();
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->delete(route('admin.users.destroy', [
-            'user' => 2,
-        ]));
+        $response = $this->actingAs($loggedUser)->delete(route('admin.users.destroy', $user));
 
-        $response->assertStatus(404);
+        $response->assertJson([
+            'email' => $user->email,
+            'name' => $user->name,
+        ]);
+        $response->assertOk();
+
+        $this->assertDeleted($user);
     }
 }
