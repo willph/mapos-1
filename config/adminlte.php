@@ -212,19 +212,19 @@ return [
             'text' => 'dashboard',
             'route'  => 'admin.dashboard.index',
             'icon' => 'fas fa-fw fa-home',
-            'active' => ['admin/dashboard']
+            'active' => ['admin/dashboard'],
         ],
         [
             'text' => 'customers',
             'route'  => 'admin.customers.index',
             'icon' => 'fas fa-fw fa-users',
-            'active' => ['regex:@^admin/customers.*$@']
+            'active' => ['regex:@^admin/customers.*$@'],
         ],
         [
             'text' => 'services',
             'route'  => 'admin.services.index',
             'icon' => 'fas fa-fw fa-wrench',
-            'active' => ['regex:@^admin/services.*$@']
+            'active' => ['regex:@^admin/services.*$@'],
         ],
         [
             'text' => 'configurations',
@@ -234,9 +234,9 @@ return [
                     'text' => 'users',
                     'route'  => 'admin.users.index',
                     'icon' => 'fas fa-fw fa-user',
-                    'active' => ['regex:@^admin/users.*$@']
+                    'active' => ['regex:@^admin/users.*$@'],
                 ],
-            ]
+            ],
         ],
     ],
 

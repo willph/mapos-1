@@ -52,7 +52,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Send password reset notification
+     * Send password reset notification.
      *
      * @param string $token
      * @return void
