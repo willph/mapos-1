@@ -30,11 +30,15 @@ Route::group([
     'middleware' => 'auth'
 ], function () {
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard.index');
 
-    // Users
-    Route::resource('/users', 'UserController');
+    // Customers
+    Route::resource('/customers', 'CustomerController');
 
     // Services
     Route::resource('/services', 'ServiceController');
+
+    // Users
+    Route::resource('/users', 'UserController');
 });
