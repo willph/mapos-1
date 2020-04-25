@@ -34,4 +34,7 @@ Route::group([
 
     // Users
     Route::resource('/users', 'UserController');
+
+    // Services
+    Route::resource('/services', 'ServiceController');
 });

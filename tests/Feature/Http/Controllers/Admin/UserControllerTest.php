@@ -30,7 +30,6 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('users');
     }
 
-
     /**
      * @test
      */
@@ -43,7 +42,6 @@ class UserControllerTest extends TestCase
         $response->assertViewIs('admin.users.create');
         $response->assertViewHas('user');
     }
-
 
     /**
      * @test
@@ -88,7 +86,6 @@ class UserControllerTest extends TestCase
         $response->assertRedirect(route('admin.users.index'));
     }
 
-
     /**
      * @test
      */
@@ -104,7 +101,6 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('user');
     }
 
-
     /**
      * @test
      */
@@ -119,7 +115,6 @@ class UserControllerTest extends TestCase
         $response->assertViewIs('admin.users.edit');
         $response->assertViewHas('user');
     }
-
 
     /**
      * @test

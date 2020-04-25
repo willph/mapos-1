@@ -20,5 +20,6 @@ return [
     'dashboard'                     => 'Dashboard',
     'search'                        => 'Buscar',
     'users'                         => 'Usuários',
+    'services'                      => 'Serviços',
 
 ];
