@@ -1,9 +1,5 @@
 preset: laravel
 risky: true
-enabled:
-  - long_array_syntax
-disabled:
-  - align_double_arrow
 finder:
   exclude:
     - modules
