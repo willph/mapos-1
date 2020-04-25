@@ -31,7 +31,6 @@ class ServiceControllerTest extends TestCase
         $response->assertViewHas('services');
     }
 
-
     /**
      * @test
      */
@@ -89,7 +88,6 @@ class ServiceControllerTest extends TestCase
         $response->assertRedirect(route('admin.services.index'));
     }
 
-
     /**
      * @test
      */
@@ -124,7 +122,6 @@ class ServiceControllerTest extends TestCase
         $response->assertViewIs('admin.services.edit');
         $response->assertViewHas('service');
     }
-
 
     /**
      * @test
@@ -169,7 +166,6 @@ class ServiceControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.services.index'));
     }
-
 
     /**
      * @test
