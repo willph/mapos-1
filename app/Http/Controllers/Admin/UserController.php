@@ -3,29 +3,42 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUserRequest;
-use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Http\Requests\Admin\UserStoreRequest;
+use App\Http\Requests\Admin\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
         $users = User::paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
 
-    public function create()
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
     {
         $user = new User();
 
         return view('admin.users.create', compact('user'));
     }
 
-    public function store(StoreUserRequest $request)
+    /**
+     * @param \App\Http\Requests\Admin\UserStoreRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserStoreRequest $request)
     {
         $data = array_merge(
             $request->validated(),
@@ -39,17 +52,32 @@ class UserController extends Controller
         return redirect(route('admin.users.index'))->with(['alert-success' => 'Usuário criado com sucesso!']);
     }
 
-    public function show(User $user)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, User $user)
     {
         return view('admin.users.show', compact('user'));
     }
 
-    public function edit(User $user)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, User $user)
     {
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    /**
+     * @param \App\Http\Requests\Admin\UserUpdateRequest $request
+     * @param \App\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UserUpdateRequest $request, User $user)
     {
         $data = $request->validated();
 
@@ -64,7 +92,12 @@ class UserController extends Controller
         return redirect(route('admin.users.index'))->with(['alert-success' => 'Usuário editado com sucesso!']);
     }
 
-    public function destroy(User $user)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, User $user)
     {
         $user->delete();
 
