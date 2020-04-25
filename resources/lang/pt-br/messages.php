@@ -5,6 +5,7 @@
 return [
 
     // General
+    'actions' => 'Ações',
     'name' => 'Nome',
     'email' => 'Email',
     'password' => 'Senha',
@@ -20,6 +21,16 @@ return [
     'delete' => 'Excluir',
     'price' => 'Preço',
     'description' => 'Descrição',
+    'document_number' => 'Documento (CPF/CNPJ)',
+    'phone_number' => 'Telefone',
+    'mobile_phone_number' => 'Telefone (Celular)',
+    'postal_code' => 'CEP',
+    'street_number' => 'Número',
+    'street_name' => 'Rua',
+    'neighborhood' => 'Bairro',
+    'city' => 'Cidade',
+    'state' => 'Estado',
+    'no_records' => 'Nenhum registro encontrado',
 
     // Users CRUD
     'users' => 'Usuários',
@@ -40,4 +51,14 @@ return [
     'confirm_service_delete' => 'Confirma a exclusão do serviço?',
     'service_deleted_success' => 'Serviço deletado com sucesso!',
     'service_deleted_fail' => 'Falha ao deletar serviço!',
+
+    // Customers CRUD
+    'customers' => 'Clientes',
+    'edit_customer' => 'Editar Cliente',
+    'create_customer' => 'Criar Cliente',
+    'view_customer' => 'Visualizar Cliente',
+
+    'confirm_customer_delete' => 'Confirma a exclusão do cliente?',
+    'customer_deleted_success' => 'Cliente deletado com sucesso!',
+    'customer_deleted_fail' => 'Falha ao deletar cliente!',
 ];
