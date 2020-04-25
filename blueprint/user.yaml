@@ -1,0 +1,35 @@
+models:
+  Models\User:
+    name: string:191
+    email: string:191
+    email_verified_at: datetime nullable
+    password: string:191
+    remember_token: string:100 nullable
+
+controllers:
+  Admin\User:
+    index:
+      query: all
+      render: admin.users.index with:users
+
+    create:
+      render: admin.users.create with:user
+
+    store:
+      validate: name, email, password
+      save: user
+      redirect: admin.users.index
+
+    show:
+      render: admin.users.show with:user
+
+    edit:
+      render: admin.users.edit with:user
+
+    update:
+      validate: name, email, password
+      save: user
+      redirect: admin.users.index
+
+    destroy:
+      delete: user
