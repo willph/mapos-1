@@ -220,6 +220,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'active' => ['regex:@^admin/users.*$@']
         ],
+        [
+            'text' => 'services',
+            'route'  => 'admin.services.index',
+            'icon' => 'fas fa-fw fa-wrench',
+            'active' => ['regex:@^admin/services.*$@']
+        ],
     ],
 
     /*
