@@ -33,13 +33,13 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                            <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
+                            <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user) }}">
                                 {{ @trans('messages.view') }}
                             </a>
-                            <a class="btn btn-xs btn-warning" href="{{ route('admin.users.edit', $user->id) }}">
+                            <a class="btn btn-xs btn-warning" href="{{ route('admin.users.edit', $user) }}">
                                 {{ @trans('messages.edit') }}
                             </a>
-                            <button type="button" class="btn btn-xs btn-danger destroy" data-id="{{ $user->id }}">
+                            <button type="button" class="btn btn-xs btn-danger destroy" data-id="{{ $user->getKey() }}">
                                 {{ @trans('messages.delete') }}
                             </button>
                         </td>
@@ -74,6 +74,9 @@
                  $.ajax({
                      url: '{{ route('admin.users.destroy', '_id') }}'.replace('_id', id),
                      method: 'DELETE',
+                     data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
                      success: function (xhr) {
                          Swal.fire({
                              icon: 'success',
