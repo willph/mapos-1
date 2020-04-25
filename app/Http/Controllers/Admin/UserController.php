@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserStoreRequest;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -49,7 +48,9 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect(route('admin.users.index'))->with(['alert-success' => 'Usuário criado com sucesso!']);
+        return redirect()
+            ->route('admin.users.index')
+            ->with(['alert-success' => 'Usuário criado com sucesso!']);
     }
 
     /**
@@ -89,7 +90,9 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect(route('admin.users.index'))->with(['alert-success' => 'Usuário editado com sucesso!']);
+        return redirect()
+            ->route('admin.users.index')
+            ->with(['alert-success' => 'Usuário editado com sucesso!']);
     }
 
     /**
@@ -101,6 +104,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return JsonResponse::create($user->toArray());
+        return response()->json($user);
     }
 }
