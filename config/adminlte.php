@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -215,16 +215,28 @@ return [
             'active' => ['admin/dashboard']
         ],
         [
-            'text' => 'users',
-            'route'  => 'admin.users.index',
-            'icon' => 'fas fa-fw fa-user',
-            'active' => ['regex:@^admin/users.*$@']
+            'text' => 'customers',
+            'route'  => 'admin.customers.index',
+            'icon' => 'fas fa-fw fa-users',
+            'active' => ['regex:@^admin/customers.*$@']
         ],
         [
             'text' => 'services',
             'route'  => 'admin.services.index',
             'icon' => 'fas fa-fw fa-wrench',
             'active' => ['regex:@^admin/services.*$@']
+        ],
+        [
+            'text' => 'configurations',
+            'icon' => 'fas fa-fw fa-cog',
+            'submenu' => [
+                [
+                    'text' => 'users',
+                    'route'  => 'admin.users.index',
+                    'icon' => 'fas fa-fw fa-user',
+                    'active' => ['regex:@^admin/users.*$@']
+                ],
+            ]
         ],
     ],
 
