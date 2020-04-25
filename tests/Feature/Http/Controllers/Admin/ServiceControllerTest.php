@@ -24,7 +24,9 @@ class ServiceControllerTest extends TestCase
         $loggedUser = factory(User::class)->create();
         $services = factory(Service::class, 3)->create();
 
-        $response = $this->actingAs($loggedUser)->get(route('admin.services.index'));
+        $response = $this
+            ->actingAs($loggedUser)
+            ->get(route('admin.services.index'));
 
         $response->assertOk();
         $response->assertViewIs('admin.services.index');
@@ -37,7 +39,9 @@ class ServiceControllerTest extends TestCase
     public function create_displays_view()
     {
         $loggedUser = factory(User::class)->create();
-        $response = $this->actingAs($loggedUser)->get(route('admin.services.create'));
+        $response = $this
+            ->actingAs($loggedUser)
+            ->get(route('admin.services.create'));
 
         $response->assertOk();
         $response->assertViewIs('admin.services.create');

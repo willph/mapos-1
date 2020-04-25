@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', @trans('messages.users'))
+@section('title', @trans('messages.customers'))
 
 @section('content_header')
     <div class="p-2">
         <div class="float-left">
-            <h2>{{ @trans('messages.users') }}</h2>
+            <h2>{{ @trans('messages.customers') }}</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-xs btn-primary btn-" href="{{ route('admin.users.create') }}">{{ @trans('messages.create_user') }}</a>
+            <a class="btn btn-xs btn-primary btn-" href="{{ route('admin.customers.create') }}">{{ @trans('messages.create_customer') }}</a>
         </div>
     </div>
 @stop
@@ -22,38 +22,42 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">{{ @trans('messages.name') }}</th>
+                    <th class="text-center">{{ @trans('messages.document_number') }}</th>
+                    <th class="text-center">{{ @trans('messages.phone_number') }}</th>
                     <th class="text-center">{{ @trans('messages.email') }}</th>
                     <th class="text-center">{{ @trans('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @forelse ($users as $user)
+                @forelse ($customers as $customer)
                     <tr class="text-center">
-                        <td>{{ $user->getKey() }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $customer->getKey() }}</td>
+                        <td>{{ $customer->name }}</td>
+                        <td>{{ $customer->document_number }}</td>
+                        <td>{{ $customer->phone_number }}</td>
+                        <td>{{ $customer->email }}</td>
                         <td>
-                            <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user) }}">
+                            <a class="btn btn-xs btn-primary" href="{{ route('admin.customers.show', $customer) }}">
                                 {{ @trans('messages.view') }}
                             </a>
-                            <a class="btn btn-xs btn-warning" href="{{ route('admin.users.edit', $user) }}">
+                            <a class="btn btn-xs btn-warning" href="{{ route('admin.customers.edit', $customer) }}">
                                 {{ @trans('messages.edit') }}
                             </a>
-                            <button type="button" class="btn btn-xs btn-danger destroy" data-id="{{ $user->getKey() }}">
+                            <button type="button" class="btn btn-xs btn-danger destroy" data-id="{{ $customer->getKey() }}">
                                 {{ @trans('messages.delete') }}
                             </button>
                         </td>
                     </tr>
                 @empty
                     <tr class="text-center">
-                        <td colspan="4">{{ @trans('messages.no_records') }}</td>
+                        <td colspan="6">{{ @trans('messages.no_records') }}</td>
                     </tr>
                 @endforelse
                 </tbody>
             </table>
         </div>
         <div class="d-flex justify-content-center">
-            {{ $users->links() }}
+            {{ $customers->links() }}
         </div>
     </div>
 @stop
@@ -64,7 +68,7 @@
          $('.destroy').on('click', function () {
              var id = $(this).data('id');
              Swal.fire({
-                 title: "{{ @trans('messages.confirm_user_delete') }}",
+                 title: "{{ @trans('messages.confirm_customer_delete') }}",
                  confirmButtonText: "{{ @trans('messages.confirm') }}",
                  cancelButtonText: "{{ @trans('messages.cancel') }}",
                  showCancelButton: true,
@@ -76,15 +80,15 @@
                  }
 
                  $.ajax({
-                     url: "{{ route('admin.users.destroy', '_id') }}".replace('_id', id),
+                     url: "{{ route('admin.customers.destroy', '_id') }}".replace('_id', id),
                      method: 'DELETE',
                      data: {
                         "_token": "{{ csrf_token() }}"
-                    },
+                     },
                      success: function (xhr) {
                          Swal.fire({
                              icon: 'success',
-                             title: "{{ @trans('messages.user_deleted_success') }}",
+                             title: "{{ @trans('messages.customer_deleted_success') }}",
                              showConfirmButton: false,
                              timer: 1500
                          })
@@ -95,7 +99,7 @@
                      error: function (xhr) {
                          Swal.fire({
                              icon: 'error',
-                             title: "{{ @trans('messages.user_deleted_fail') }}",
+                             title: "{{ @trans('messages.customer_deleted_fail') }}",
                              showConfirmButton: true,
                              timer: 1500
                          });

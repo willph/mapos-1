@@ -1,0 +1,41 @@
+models:
+  Models\Customer:
+    name: string:191
+    document_number: string:191
+    phone_number: string:191
+    mobile_phone_number: string:191
+    email: string:191
+    postal_code: string:191
+    street_number: string:191
+    street_name: string:191
+    neighborhood: string:191
+    city: string:191
+    state: string:191
+
+controllers:
+  Admin\Customer:
+    index:
+      query: all
+      render: admin.customers.index with:customers
+
+    create:
+      render: admin.customers.create with:customer
+
+    store:
+      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
+      save: customer
+      redirect: admin.customers.index
+
+    show:
+      render: admin.customers.show with:customer
+
+    edit:
+      render: admin.customers.edit with:customer
+
+    update:
+      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
+      save: customer
+      redirect: admin.customers.index
+
+    destroy:
+      delete: customer

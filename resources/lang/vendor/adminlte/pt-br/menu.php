@@ -21,5 +21,7 @@ return [
     'search'                        => 'Buscar',
     'users'                         => 'Usuários',
     'services'                      => 'Serviços',
+    'configurations'                => 'Configurações',
+    'customers'                     => 'Clientes',
 
 ];

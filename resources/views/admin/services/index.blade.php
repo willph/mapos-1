@@ -24,10 +24,11 @@
                     <th class="text-center">{{ @trans('messages.name') }}</th>
                     <th class="text-center">{{ @trans('messages.description') }}</th>
                     <th class="text-center">{{ @trans('messages.price') }}</th>
+                    <th class="text-center">{{ @trans('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($services as $service)
+                @forelse ($services as $service)
                     <tr class="text-center">
                         <td>{{ $service->getKey() }}</td>
                         <td>{{ $service->name }}</td>
@@ -45,7 +46,11 @@
                             </button>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr class="text-center">
+                        <td colspan="5">{{ @trans('messages.no_records') }}</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>
@@ -73,7 +78,7 @@
                  }
 
                  $.ajax({
-                     url: '{{ route('admin.services.destroy', '_id') }}'.replace('_id', id),
+                     url: "{{ route('admin.services.destroy', '_id') }}".replace('_id', id),
                      method: 'DELETE',
                      data: {
                         "_token": "{{ csrf_token() }}"
