@@ -23,11 +23,11 @@
                     <th class="text-center">#</th>
                     <th class="text-center">{{ @trans('messages.name') }}</th>
                     <th class="text-center">{{ @trans('messages.email') }}</th>
-                    <th class="text-center">{{ @trans('messages.name') }}</th>
+                    <th class="text-center">{{ @trans('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @forelse ($users as $user)
                     <tr class="text-center">
                         <td>{{ $user->getKey() }}</td>
                         <td>{{ $user->name }}</td>
@@ -44,7 +44,11 @@
                             </button>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr class="text-center">
+                        <td colspan="4">{{ @trans('messages.no_records') }}</td>
+                    </tr>
+                @endforelse
                 </tbody>
             </table>
         </div>
@@ -72,7 +76,7 @@
                  }
 
                  $.ajax({
-                     url: '{{ route('admin.users.destroy', '_id') }}'.replace('_id', id),
+                     url: "{{ route('admin.users.destroy', '_id') }}".replace('_id', id),
                      method: 'DELETE',
                      data: {
                         "_token": "{{ csrf_token() }}"

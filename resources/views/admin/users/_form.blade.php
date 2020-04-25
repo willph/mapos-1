@@ -7,9 +7,9 @@
         @method($user->exists ? 'PUT' : 'POST')
         @csrf
         <div class="card-body">
-            <div class="form-group">
-                <label for="name">{{ @trans('messages.name') }}</label>
-                <div class="input-group">
+            <div class="form-group row">
+                <label class="col-sm-2" for="name">{{ @trans('messages.name') }}</label>
+                <div class="input-group-sm col-sm-10">
                     <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" name="name" placeholder="João Silva" value="{{ $user->name ?? old('name') }}" autofocus>
                     @if ($errors->has('name'))
                         <div class="invalid-feedback">
@@ -19,9 +19,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="email">{{ @trans('messages.email') }}</label>
-                <div class="input-group">
+            <div class="form-group row">
+                <label class="col-sm-2" for="email">{{ @trans('messages.email') }}</label>
+                <div class="input-group-sm col-sm-10">
                     <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" placeholder="joao_silva@email.com" value="{{ $user->email ?? old('email') }}">
                     @if ($errors->has('email'))
                         <div class="invalid-feedback">
@@ -31,9 +31,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="password">{{ @trans('messages.password') }}</label>
-                <div class="input-group">
+            <div class="form-group row">
+                <label class="col-sm-2" for="password">{{ @trans('messages.password') }}</label>
+                <div class="input-group-sm col-sm-10">
                     <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password" placeholder="{{ @trans('messages.password') }}">
                     @if ($errors->has('password'))
                         <div class="invalid-feedback">
@@ -43,9 +43,9 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="password_confirmation">{{ @trans('messages.repeat_password') }}</label>
-                <div class="input-group">
+            <div class="form-group row">
+                <label class="col-sm-2" for="password_confirmation">{{ @trans('messages.repeat_password') }}</label>
+                <div class="input-group-sm col-sm-10">
                     <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password_confirmation" name="password_confirmation" placeholder="{{ @trans('messages.repeat_password') }}">
                 </div>
             </div>

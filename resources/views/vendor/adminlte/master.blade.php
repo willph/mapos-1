@@ -24,7 +24,7 @@
     @else
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @endif
-	
+
     @yield('meta_tags')
 
     @if(config('adminlte.use_ico_only'))
