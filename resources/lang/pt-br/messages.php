@@ -31,6 +31,12 @@ return [
     'city' => 'Cidade',
     'state' => 'Estado',
     'no_records' => 'Nenhum registro encontrado',
+    'barcode' => 'Código de Barras',
+    'quantity_in_stock' => 'Quantidade em Estoque',
+    'sale_price' => 'Preço de Venda',
+    'purchase_price' => 'Preço de Compra',
+    'unit' => 'Unidade',
+    'minimum_quantity_in_stock' => 'Quantidade Mínima em Estoque',
 
     // Users CRUD
     'users' => 'Usuários',
@@ -61,4 +67,14 @@ return [
     'confirm_customer_delete' => 'Confirma a exclusão do cliente?',
     'customer_deleted_success' => 'Cliente deletado com sucesso!',
     'customer_deleted_fail' => 'Falha ao deletar cliente!',
+
+    // Products CRUD
+    'products' => 'Produtos',
+    'edit_product' => 'Editar Produto',
+    'create_product' => 'Criar Produto',
+    'view_product' => 'Visualizar Produto',
+
+    'confirm_product_delete' => 'Confirma a exclusão do produto?',
+    'product_deleted_success' => 'Produto deletado com sucesso!',
+    'product_deleted_fail' => 'Falha ao deletar produto!',
 ];
