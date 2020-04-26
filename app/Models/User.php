@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\UserCreatedEvent;
+use App\Events\UserDeletedEvent;
+use App\Events\UserUpdatedEvent;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +52,17 @@ class User extends Authenticatable
      */
     protected $dates = [
         'email_verified_at',
+    ];
+
+    /**
+    * The events that the model fires.
+    *
+    * @var array
+    */
+    protected $dispatchesEvents = [
+        'created' => UserCreatedEvent::class,
+        'updated' => UserUpdatedEvent::class,
+        'deleted' => UserDeletedEvent::class,
     ];
 
     /**
