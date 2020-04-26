@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\ProductCreatedEvent;
+use App\Events\ProductDeletedEvent;
+use App\Events\ProductUpdatedEvent;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -33,5 +36,16 @@ class Product extends Model
         'sale_price' => 'decimal:2',
         'quantity_in_stock' => 'integer',
         'minimum_quantity_in_stock' => 'integer',
+    ];
+
+    /**
+    * The events that the model fires.
+    *
+    * @var array
+    */
+    protected $dispatchesEvents = [
+        'created' => ProductCreatedEvent::class,
+        'updated' => ProductUpdatedEvent::class,
+        'deleted' => ProductDeletedEvent::class,
     ];
 }
