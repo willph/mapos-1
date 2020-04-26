@@ -31,5 +31,7 @@ class Product extends Model
         'id' => 'integer',
         'purchase_price' => 'decimal:2',
         'sale_price' => 'decimal:2',
+        'quantity_in_stock' => 'integer',
+        'minimum_quantity_in_stock' => 'integer',
     ];
 }
