@@ -1,78 +1,62 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Map-OS
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+⚠️ Aviso: Trabalho em progresso!
 
-## About Laravel
+![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?longCache=true&style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-green.svg?longCache=true&style=flat-square)
+![Tests](https://github.com/map-os/mapos/workflows/Tests/badge.svg)
+![StyleCI](https://github.styleci.io/repos/249856074/shield?branch=master)
+![Issues](https://img.shields.io/github/issues/map-os/mapos.svg?longCache=true&style=flat-square)
+![Contributors](https://img.shields.io/github/contributors/map-os/mapos.svg?longCache=true&style=flat-square)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![MapOS](https://raw.githubusercontent.com/RamonSilva20/mapos/master/assets/img/logo.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requerimentos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* PHP 7.2 ou superior
+* Banco de dados (por exemplo: MySQL, PostgreSQL, SQLite)
+* Servidor Web (por exemplo: Apache, Nginx, IIS)
 
-## Learning Laravel
+## Framework
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Map-OS usa o [Laravel](http://laravel.com), o melhor framework PHP atualmente, como base.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalação
 
-## Laravel Sponsors
+* Instale o [Composer](https://getcomposer.org/download) e o [Npm](https://nodejs.org/en/download)
+* Clone o repositório: `git clone https://github.com/map-os/mapos.git`
+* Instale as dependências `composer install ; npm install ; npm run production`
+* Crie o arquivo de configuração de variáveis de ambiente `cp .env.production .env`
+* Configure as variáveis de ambiente e a conexão com o banco de dados no arquivo .env
+* Rode os seeders `php artisan db:seed`
+* Acesse o Map-OS no navegador e logue com as credenciais:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+Login: admin@admin.com
+Senha: admin
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+## Contribuindo
 
-## Contributing
+Por favor, seja muito claro em suas pull requests, as pull requests podem ser rejeitadas sem motivo.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ao contribuir com código para o Map-OS, você deve seguir os padrões de codificação PSR-2. A regra de ouro é: Imite o código Map-OS existente.
 
-## Code of Conduct
+## Changelog
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Por favor, consulte [Changelog](CHANGELOG.md) para obter mais informações sobre todas as atualizações.
 
-## Security Vulnerabilities
+## Segurança
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Se você descobrir algum problema relacionado à segurança, envie um email para gian_bine@hotmail.com ao invés de usar o issue tracker.
 
-## License
+## Créditos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* [Ramon Silva](https://github.com/RamonSilva20)
+* [Willmerson](https://github.com/willph)
+* [Gianluca Bine](https://github.com/Pr3d4dor)
+* [Todos os Contribuidores](../../contributors)
+
+## Licença
+
+O Map-OS é distribuído utilizando a [MIT License](LICENSE.md).
