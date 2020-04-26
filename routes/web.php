@@ -45,5 +45,3 @@ Route::group([
     // Users
     Route::resource('/users', 'UserController');
 });
-
-Route::resource('product', 'Admin\ProductController');
