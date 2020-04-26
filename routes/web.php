@@ -36,9 +36,15 @@ Route::group([
     // Customers
     Route::resource('/customers', 'CustomerController');
 
+    // Products
+    Route::resource('/products', 'ProductController');
+
     // Services
     Route::resource('/services', 'ServiceController');
 
     // Users
     Route::resource('/users', 'UserController');
 });
+
+
+Route::resource('product', 'Admin\ProductController');
