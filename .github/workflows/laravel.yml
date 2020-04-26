@@ -1,24 +1,61 @@
-name: Laravel
+name: Tests
 
-on: [push]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
-  laravel-tests:
+  tests:
+
+    name: PHP ${{ matrix.php }}
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['7.2', '7.3', '7.4']
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.local', '.env');"
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-    - name: Create Database
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
-    - name: Generate key
-      run: php artisan key:generate
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ~/.composer/cache/files
+          key: php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: bcmath, ctype, dom, fileinfo, intl, gd, json, mbstring, pdo, pdo_sqlite, openssl, sqlite, xml, zip
+          coverage: none
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.local', '.env');"
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Install NPM
+        run: npm install
+
+      - name: Compile assets
+        run: npm run production
+
+      - name: Execute tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: vendor/bin/phpunit
