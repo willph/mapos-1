@@ -2,9 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Events\UserCreatedEvent;
+use App\Events\UserDeletedEvent;
+use App\Events\UserUpdatedEvent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
@@ -65,6 +69,8 @@ class UserControllerTest extends TestCase
         $name = 'test_name';
         $password = 'test_password';
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->post(route('admin.users.store'), [
@@ -80,10 +86,15 @@ class UserControllerTest extends TestCase
             ->where('name', $name)
             ->where('email', $email)
             ->get();
-
         $this->assertCount(1, $users);
 
         $response->assertRedirect(route('admin.users.index'));
+
+        $user = $users->first();
+
+        Event::assertDispatched(UserCreatedEvent::class, function ($event) use ($user) {
+            return $event->user->is($user);
+        });
     }
 
     /**
@@ -139,6 +150,8 @@ class UserControllerTest extends TestCase
         $name = 'test_name';
         $password = 'test_password';
 
+        Event::fake();
+
         $response = $this->actingAs($user)
             ->put(route('admin.users.update', $user), [
                 'name' => $name,
@@ -154,9 +167,14 @@ class UserControllerTest extends TestCase
             ->where('email', $email)
             ->get();
         $this->assertCount(1, $users);
-        $user = $users->first();
 
         $response->assertRedirect(route('admin.users.index'));
+
+        $user = $users->first();
+
+        Event::assertDispatched(UserUpdatedEvent::class, function ($event) use ($user) {
+            return $event->user->is($user);
+        });
     }
 
     /**
@@ -167,6 +185,8 @@ class UserControllerTest extends TestCase
         $loggedUser = factory(User::class)->create();
         $user = factory(User::class)->create();
 
+        Event::fake();
+
         $response = $this->actingAs($loggedUser)->delete(route('admin.users.destroy', $user));
 
         $response->assertJson([
@@ -176,5 +196,9 @@ class UserControllerTest extends TestCase
         $response->assertOk();
 
         $this->assertDeleted($user);
+
+        Event::assertDispatched(UserDeletedEvent::class, function ($event) use ($user) {
+            return $event->user->is($user);
+        });
     }
 }

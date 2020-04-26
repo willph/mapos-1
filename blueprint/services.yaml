@@ -16,6 +16,7 @@ controllers:
     store:
       validate: name, email, password
       save: service
+      fire: ServiceCreatedEvent with:service
       redirect: admin.services.index
 
     show:
@@ -27,7 +28,9 @@ controllers:
     update:
       validate: name, email, password
       save: service
+      fire: ServiceUpdatedEvent with:service
       redirect: admin.services.index
 
     destroy:
       delete: service
+      fire: ServiceDeletedEvent with:service

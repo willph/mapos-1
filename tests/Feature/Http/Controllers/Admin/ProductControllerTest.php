@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Events\ProductCreatedEvent;
+use App\Events\ProductDeletedEvent;
+use App\Events\ProductUpdatedEvent;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
@@ -75,6 +79,8 @@ class ProductControllerTest extends TestCase
         $quantity_in_stock = $this->faker->randomNumber();
         $minimum_quantity_in_stock = $this->faker->randomNumber();
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->post(route('admin.products.store'), [
@@ -102,6 +108,10 @@ class ProductControllerTest extends TestCase
         $product = $products->first();
 
         $response->assertRedirect(route('admin.products.index'));
+
+        Event::assertDispatched(ProductCreatedEvent::class, function ($event) use ($product) {
+            return $event->product->is($product);
+        });
     }
 
     /**
@@ -166,6 +176,8 @@ class ProductControllerTest extends TestCase
         $quantity_in_stock = $this->faker->randomNumber();
         $minimum_quantity_in_stock = $this->faker->randomNumber();
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->put(route('admin.products.update', $product), [
@@ -193,6 +205,10 @@ class ProductControllerTest extends TestCase
         $product = $products->first();
 
         $response->assertRedirect(route('admin.products.index'));
+
+        Event::assertDispatched(ProductUpdatedEvent::class, function ($event) use ($product) {
+            return $event->product->is($product);
+        });
     }
 
     /**
@@ -202,6 +218,8 @@ class ProductControllerTest extends TestCase
     {
         $loggedUser = factory(User::class)->create();
         $product = factory(Product::class)->create();
+
+        Event::fake();
 
         $response = $this
             ->actingAs($loggedUser)
@@ -220,5 +238,9 @@ class ProductControllerTest extends TestCase
         $response->assertOk();
 
         $this->assertDeleted($product);
+
+        Event::assertDispatched(ProductDeletedEvent::class, function ($event) use ($product) {
+            return $event->product->is($product);
+        });
     }
 }

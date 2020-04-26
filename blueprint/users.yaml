@@ -18,6 +18,7 @@ controllers:
     store:
       validate: name, email, password
       save: user
+      fire: UserCreatedEvent with:user
       redirect: admin.users.index
 
     show:
@@ -29,7 +30,9 @@ controllers:
     update:
       validate: name, email, password
       save: user
+      fire: UserUpdatedEvent with:user
       redirect: admin.users.index
 
     destroy:
       delete: user
+      fire: UserDeletedEvent with:user

@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Events\CustomerCreatedEvent;
+use App\Events\CustomerDeletedEvent;
+use App\Events\CustomerUpdatedEvent;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
@@ -78,6 +82,8 @@ class CustomerControllerTest extends TestCase
         $city = $this->faker->city;
         $state = $this->faker->state;
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->post(route('admin.customers.store'), [
@@ -111,6 +117,10 @@ class CustomerControllerTest extends TestCase
         $customer = $customers->first();
 
         $response->assertRedirect(route('admin.customers.index'));
+
+        Event::assertDispatched(CustomerCreatedEvent::class, function ($event) use ($customer) {
+            return $event->customer->is($customer);
+        });
     }
 
     /**
@@ -178,6 +188,8 @@ class CustomerControllerTest extends TestCase
         $city = $this->faker->city;
         $state = $this->faker->state;
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->put(route('admin.customers.update', $customer), [
@@ -211,6 +223,10 @@ class CustomerControllerTest extends TestCase
         $customer = $customers->first();
 
         $response->assertRedirect(route('admin.customers.index'));
+
+        Event::assertDispatched(CustomerUpdatedEvent::class, function ($event) use ($customer) {
+            return $event->customer->is($customer);
+        });
     }
 
     /**
@@ -220,6 +236,8 @@ class CustomerControllerTest extends TestCase
     {
         $loggedUser = factory(User::class)->create();
         $customer = factory(Customer::class)->create();
+
+        Event::fake();
 
         $response = $this
             ->actingAs($loggedUser)
@@ -241,5 +259,9 @@ class CustomerControllerTest extends TestCase
         $response->assertOk();
 
         $this->assertDeleted($customer);
+
+        Event::assertDispatched(CustomerDeletedEvent::class, function ($event) use ($customer) {
+            return $event->customer->is($customer);
+        });
     }
 }

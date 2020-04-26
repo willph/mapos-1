@@ -2,10 +2,14 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
+use App\Events\ServiceCreatedEvent;
+use App\Events\ServiceDeletedEvent;
+use App\Events\ServiceUpdatedEvent;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Tests\TestCase;
 
@@ -70,6 +74,8 @@ class ServiceControllerTest extends TestCase
         $description = $this->faker->word;
         $price = $this->faker->numberBetween(0, 1000);
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->post(route('admin.services.store'), [
@@ -89,6 +95,10 @@ class ServiceControllerTest extends TestCase
         $service = $services->first();
 
         $response->assertRedirect(route('admin.services.index'));
+
+        Event::assertDispatched(ServiceCreatedEvent::class, function ($event) use ($service) {
+            return $event->service->is($service);
+        });
     }
 
     /**
@@ -148,6 +158,8 @@ class ServiceControllerTest extends TestCase
         $description = $this->faker->word;
         $price = $this->faker->numberBetween(0, 1000);
 
+        Event::fake();
+
         $response = $this
             ->actingAs($loggedUser)
             ->put(route('admin.services.update', $service), [
@@ -167,6 +179,10 @@ class ServiceControllerTest extends TestCase
         $service = $services->first();
 
         $response->assertRedirect(route('admin.services.index'));
+
+        Event::assertDispatched(ServiceUpdatedEvent::class, function ($event) use ($service) {
+            return $event->service->is($service);
+        });
     }
 
     /**
@@ -176,6 +192,8 @@ class ServiceControllerTest extends TestCase
     {
         $loggedUser = factory(User::class)->create();
         $service = factory(Service::class)->create();
+
+        Event::fake();
 
         $response = $this
             ->actingAs($loggedUser)
@@ -189,5 +207,9 @@ class ServiceControllerTest extends TestCase
         $response->assertOk();
 
         $this->assertDeleted($service);
+
+        Event::assertDispatched(ServiceDeletedEvent::class, function ($event) use ($service) {
+            return $event->service->is($service);
+        });
     }
 }

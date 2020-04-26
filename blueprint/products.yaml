@@ -21,6 +21,7 @@ controllers:
     store:
       validate: name, description, barcode, purchase_price, sale_price, unit, quantity_in_stock, minimum_quantity_in_stock
       save: product
+      fire: ProductCreatedEvent with:product
       redirect: admin.products.index
 
     show:
@@ -32,7 +33,9 @@ controllers:
     update:
       validate: name, description, barcode, purchase_price, sale_price, unit, quantity_in_stock, minimum_quantity_in_stock
       save: product
+      fire: ProductUpdatedEvent with:product
       redirect: admin.products.index
 
     destroy:
       delete: product
+      fire: ProductDeletedEvent with:product

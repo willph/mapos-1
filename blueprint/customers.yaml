@@ -24,6 +24,7 @@ controllers:
     store:
       validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
       save: customer
+      fire: CustomerCreatedEvent with:customer
       redirect: admin.customers.index
 
     show:
@@ -35,7 +36,9 @@ controllers:
     update:
       validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
       save: customer
+      fire: CustomerUpdatedEvent with:customer
       redirect: admin.customers.index
 
     destroy:
       delete: customer
+      fire: CustomerDeletedEvent with:customer
