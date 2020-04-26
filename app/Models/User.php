@@ -55,10 +55,10 @@ class User extends Authenticatable
     ];
 
     /**
-    * The events that the model fires.
-    *
-    * @var array
-    */
+     * The events that the model fires.
+     *
+     * @var array
+     */
     protected $dispatchesEvents = [
         'created' => UserCreatedEvent::class,
         'updated' => UserUpdatedEvent::class,

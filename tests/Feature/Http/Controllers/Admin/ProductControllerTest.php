@@ -114,7 +114,6 @@ class ProductControllerTest extends TestCase
         });
     }
 
-
     /**
      * @test
      */

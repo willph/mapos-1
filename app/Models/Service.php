@@ -31,10 +31,10 @@ class Service extends Model
     ];
 
     /**
-    * The events that the model fires.
-    *
-    * @var array
-    */
+     * The events that the model fires.
+     *
+     * @var array
+     */
     protected $dispatchesEvents = [
         'created' => ServiceCreatedEvent::class,
         'updated' => ServiceUpdatedEvent::class,
