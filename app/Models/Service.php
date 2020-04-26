@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\ServiceCreatedEvent;
+use App\Events\ServiceDeletedEvent;
+use App\Events\ServiceUpdatedEvent;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
@@ -25,5 +28,16 @@ class Service extends Model
     protected $casts = [
         'id' => 'integer',
         'price' => 'decimal:2',
+    ];
+
+    /**
+    * The events that the model fires.
+    *
+    * @var array
+    */
+    protected $dispatchesEvents = [
+        'created' => ServiceCreatedEvent::class,
+        'updated' => ServiceUpdatedEvent::class,
+        'deleted' => ServiceDeletedEvent::class,
     ];
 }
