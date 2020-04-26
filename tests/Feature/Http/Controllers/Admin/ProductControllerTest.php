@@ -33,7 +33,6 @@ class ProductControllerTest extends TestCase
         $response->assertViewHas('products');
     }
 
-
     /**
      * @test
      */
@@ -48,7 +47,6 @@ class ProductControllerTest extends TestCase
         $response->assertViewIs('admin.products.create');
         $response->assertViewHas('product');
     }
-
 
     /**
      * @test
@@ -106,7 +104,6 @@ class ProductControllerTest extends TestCase
         $response->assertRedirect(route('admin.products.index'));
     }
 
-
     /**
      * @test
      */
@@ -124,7 +121,6 @@ class ProductControllerTest extends TestCase
         $response->assertViewHas('product');
     }
 
-
     /**
      * @test
      */
@@ -141,7 +137,6 @@ class ProductControllerTest extends TestCase
         $response->assertViewIs('admin.products.edit');
         $response->assertViewHas('product');
     }
-
 
     /**
      * @test
@@ -199,7 +194,6 @@ class ProductControllerTest extends TestCase
 
         $response->assertRedirect(route('admin.products.index'));
     }
-
 
     /**
      * @test
