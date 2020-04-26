@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\CustomerCreatedEvent;
+use App\Events\CustomerDeletedEvent;
+use App\Events\CustomerUpdatedEvent;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -32,5 +35,16 @@ class Customer extends Model
      */
     protected $casts = [
         'id' => 'integer',
+    ];
+
+    /**
+    * The events that the model fires.
+    *
+    * @var array
+    */
+    protected $dispatchesEvents = [
+        'created' => CustomerCreatedEvent::class,
+        'updated' => CustomerUpdatedEvent::class,
+        'deleted' => CustomerDeletedEvent::class,
     ];
 }
