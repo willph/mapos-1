@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Http\Controllers\Admin;
 
-use App\Models\Customer;
-use App\Models\User;
 use App\Events\CustomerCreatedEvent;
 use App\Events\CustomerDeletedEvent;
 use App\Events\CustomerUpdatedEvent;
+use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Event;
