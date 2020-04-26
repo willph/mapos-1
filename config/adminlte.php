@@ -221,6 +221,12 @@ return [
             'active' => ['regex:@^admin/customers.*$@'],
         ],
         [
+            'text' => 'products',
+            'route'  => 'admin.products.index',
+            'icon' => 'fas fa-fw fa-shopping-bag',
+            'active' => ['regex:@^admin/products.*$@'],
+        ],
+        [
             'text' => 'services',
             'route'  => 'admin.services.index',
             'icon' => 'fas fa-fw fa-wrench',

@@ -23,5 +23,6 @@ return [
     'services'                      => 'Serviços',
     'configurations'                => 'Configurações',
     'customers'                     => 'Clientes',
+    'products'                      => 'Produtos',
 
 ];
