@@ -26,6 +26,8 @@ class Customer extends Model
         'neighborhood',
         'city',
         'state',
+        'complement',
+        'contact',
     ];
 
     /**

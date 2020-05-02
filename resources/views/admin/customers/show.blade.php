@@ -57,6 +57,14 @@
                     <td class="w-50">{{ $customer->state }}</td>
                 </tr>
                 <tr>
+                    <td class="w-50">{{ @trans('messages.complement') }}</td>
+                    <td class="w-50">{{ $customer->complement }}</td>
+                </tr>
+                <tr>
+                    <td class="w-50">{{ @trans('messages.contact') }}</td>
+                    <td class="w-50">{{ $customer->contact }}</td>
+                </tr>
+                <tr>
                     <td class="w-50">{{ @trans('messages.created_at') }}</td>
                     <td class="w-50">@datetime($customer->created_at)</td>
                 </tr>

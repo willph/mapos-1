@@ -81,6 +81,8 @@ class CustomerControllerTest extends TestCase
         $neighborhood = $this->faker->word;
         $city = $this->faker->city;
         $state = $this->faker->state;
+        $complement = $this->faker->word;
+        $contact = $this->faker->word;
 
         Event::fake();
 
@@ -98,6 +100,8 @@ class CustomerControllerTest extends TestCase
                 'neighborhood' => $neighborhood,
                 'city' => $city,
                 'state' => $state,
+                'complement' => $complement,
+                'contact' => $contact,
             ]);
 
         $customers = Customer::query()
@@ -112,6 +116,8 @@ class CustomerControllerTest extends TestCase
             ->where('neighborhood', $neighborhood)
             ->where('city', $city)
             ->where('state', $state)
+            ->where('complement', $complement)
+            ->where('contact', $contact)
             ->get();
         $this->assertCount(1, $customers);
         $customer = $customers->first();
@@ -187,6 +193,8 @@ class CustomerControllerTest extends TestCase
         $neighborhood = $this->faker->word;
         $city = $this->faker->city;
         $state = $this->faker->state;
+        $complement = $this->faker->word;
+        $contact = $this->faker->word;
 
         Event::fake();
 
@@ -204,6 +212,8 @@ class CustomerControllerTest extends TestCase
                 'neighborhood' => $neighborhood,
                 'city' => $city,
                 'state' => $state,
+                'complement' => $complement,
+                'contact' => $contact,
             ]);
 
         $customers = Customer::query()
@@ -218,6 +228,8 @@ class CustomerControllerTest extends TestCase
             ->where('neighborhood', $neighborhood)
             ->where('city', $city)
             ->where('state', $state)
+            ->where('complement', $complement)
+            ->where('contact', $contact)
             ->get();
         $this->assertCount(1, $customers);
         $customer = $customers->first();
@@ -255,6 +267,8 @@ class CustomerControllerTest extends TestCase
             'neighborhood' => $customer->neighborhood,
             'city' => $customer->city,
             'state' => $customer->state,
+            'complement' => $customer->complement,
+            'contact' => $customer->contact,
         ]);
         $response->assertOk();
 

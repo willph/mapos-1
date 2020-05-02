@@ -24,17 +24,19 @@ class CustomerUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'document_number' => 'required',
-            'phone_number' => 'required',
-            'mobile_phone_number' => 'required',
-            'email' => 'required',
-            'postal_code' => 'required',
-            'street_number' => 'required',
-            'street_name' => 'required',
-            'neighborhood' => 'required',
-            'city' => 'required',
-            'state' => 'required',
+            'name' => 'required|max:191',
+            'document_number' => 'required|max:191',
+            'phone_number' => 'required|max:191',
+            'mobile_phone_number' => 'required|max:191',
+            'email' => 'required|max:191',
+            'postal_code' => 'required|max:191',
+            'street_number' => 'required|max:191',
+            'street_name' => 'required|max:191',
+            'neighborhood' => 'required|max:191',
+            'city' => 'required|max:191',
+            'state' => 'required|max:191',
+            'complement' => 'sometimes|string|nullable',
+            'contact' => 'sometimes|string|nullable',
         ];
     }
 }
