@@ -18,5 +18,7 @@ $factory->define(Customer::class, function (Faker $faker) {
         'neighborhood' => $faker->word,
         'city' => $faker->city,
         'state' => $faker->state,
+        'complement' => $faker->word,
+        'contact' => $faker->word,
     ];
 });

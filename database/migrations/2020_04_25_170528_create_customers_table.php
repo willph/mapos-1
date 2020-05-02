@@ -26,6 +26,8 @@ class CreateCustomersTable extends Migration
             $table->string('neighborhood', 191);
             $table->string('city', 191);
             $table->string('state', 191);
+            $table->string('complement', 191)->nullable();
+            $table->string('contact', 191)->nullable();
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ models:
     neighborhood: string:191
     city: string:191
     state: string:191
+    complement: string:191 nullable
 
 controllers:
   Admin\Customer:
@@ -22,7 +23,7 @@ controllers:
       render: admin.customers.create with:customer
 
     store:
-      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
+      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state, complement
       save: customer
       fire: CustomerCreatedEvent with:customer
       redirect: admin.customers.index
@@ -34,7 +35,7 @@ controllers:
       render: admin.customers.edit with:customer
 
     update:
-      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state
+      validate: name, document_number, phone_number, mobile_phone_number, email, postal_code, street_number, street_name, neighborhood, city, state, complement
       save: customer
       fire: CustomerUpdatedEvent with:customer
       redirect: admin.customers.index

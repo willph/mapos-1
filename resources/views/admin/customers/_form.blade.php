@@ -138,6 +138,30 @@
                     @endif
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2" for="complement">{{ @trans('messages.complement') }}</label>
+                <div class="input-group-sm col-sm-10">
+                    <input type="text" class="form-control {{ $errors->has('complement') ? 'is-invalid' : '' }}" id="complement" name="complement" placeholder="Complemento" value="{{ $customer->complement ?? old('complement') }}">
+                    @if ($errors->has('complement'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('complement') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2" for="contact">{{ @trans('messages.contact') }}</label>
+                <div class="input-group-sm col-sm-10">
+                    <input type="text" class="form-control {{ $errors->has('contact') ? 'is-invalid' : '' }}" id="contact" name="contact" placeholder="Contato" value="{{ $customer->contact ?? old('contact') }}">
+                    @if ($errors->has('contact'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('contact') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
 
         <div class="card-footer">

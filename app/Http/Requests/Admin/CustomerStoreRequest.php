@@ -35,6 +35,8 @@ class CustomerStoreRequest extends FormRequest
             'neighborhood' => 'required|max:191',
             'city' => 'required|max:191',
             'state' => 'required|max:191',
+            'complement' => 'sometimes|string|nullable',
+            'contact' => 'sometimes|string|nullable',
         ];
     }
 }

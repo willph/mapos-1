@@ -37,6 +37,8 @@ return [
     'purchase_price' => 'Preço de Compra',
     'unit' => 'Unidade',
     'minimum_quantity_in_stock' => 'Quantidade Mínima em Estoque',
+    'complement' => 'Complemento',
+    'contact' => 'Contato',
 
     // Users CRUD
     'users' => 'Usuários',
