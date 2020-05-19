@@ -25,11 +25,15 @@ Map-OS usa o [Laravel](http://laravel.com), o melhor framework PHP atualmente, c
 
 * Instale o [Composer](https://getcomposer.org/download) e o [Npm](https://nodejs.org/en/download)
 * Clone o repositório: `git clone https://github.com/map-os/mapos.git`
+* Depois acesse a pasta MAPOS, `cd mapos`
 * Instale as dependências `composer install ; npm install ; npm run production`
 * Crie o arquivo de configuração de variáveis de ambiente `cp .env.production .env`
 * Configure as variáveis de ambiente e a conexão com o banco de dados no arquivo .env
-* Rode os seeders `php artisan db:seed`
-* Acesse o Map-OS no navegador e logue com as credenciais:
+* Rode os seeders `php artisan migrate:fresh --seed`
+* Rode `php artisan key:generate`
+* Rode `php artisan serve` para iniciar o servidor. 
+* Acesse o Map-OS no navegador: http://localhost:8000 ou url que você configurar.
+* E logue com as credenciais
 
 ```bash
 Login: admin@admin.com
