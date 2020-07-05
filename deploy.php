@@ -6,7 +6,7 @@ use Deployer\Utility\Httpie;
 
 require 'recipe/laravel.php';
 require 'recipe/slack.php';
-require 'recipe/rsync.php';
+require 'recipe/yarn.php';
 
 // Project name
 set('application', 'mapos');
@@ -64,15 +64,13 @@ host('mapos') // Name of the server
 
 // Tasks
 
-// Set up a deployer task to copy secrets to the server.
-// Grabs the dotenv file from the github secret
-task('deploy:secrets', function () {
-    file_put_contents(__DIR__.'/.env', getenv('DOT_ENV'));
-    upload('.env', get('deploy_path').'/shared');
-});
-
 task('build', function () {
     run('cd {{release_path}} && build');
+});
+
+desc('Build Yarn Assets');
+task('yarn:build-assets', function () {
+    run("cd {{release_path}} && {{bin/yarn}} prod");
 });
 
 // [Optional] if deploy fails automatically unlock.
@@ -88,11 +86,12 @@ task('deploy', [
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
-    'rsync', // Deploy code & built assets
-    'deploy:secrets', // Deploy secrets
+    'deploy:update_code',
     'deploy:shared',
     'deploy:vendors',
     'deploy:writable',
+    'yarn:install',
+    'yarn:build-assets',
     'artisan:storage:link', // |
     'artisan:view:cache',   // |
     'artisan:config:cache', // | Laravel specific steps
@@ -101,6 +100,7 @@ task('deploy', [
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
+    'slack:notify:success',
 ]);
 
 desc('Notifying Slack');
