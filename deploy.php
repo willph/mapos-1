@@ -1,4 +1,5 @@
 <?php
+
 namespace Deployer;
 
 use Deployer\Utility\Httpie;
@@ -66,8 +67,8 @@ host('mapos') // Name of the server
 // Set up a deployer task to copy secrets to the server.
 // Grabs the dotenv file from the github secret
 task('deploy:secrets', function () {
-    file_put_contents(__DIR__ . '/.env', getenv('DOT_ENV'));
-    upload('.env', get('deploy_path') . '/shared');
+    file_put_contents(__DIR__.'/.env', getenv('DOT_ENV'));
+    upload('.env', get('deploy_path').'/shared');
 });
 
 task('build', function () {
@@ -104,7 +105,7 @@ task('deploy', [
 
 desc('Notifying Slack');
 task('slack:notify', function () {
-    if (!get('slack_webhook', false)) {
+    if (! get('slack_webhook', false)) {
         return;
     }
 
@@ -121,7 +122,7 @@ task('slack:notify', function () {
 
 desc('Notifying Slack about deploy finish');
 task('slack:notify:success', function () {
-    if (!get('slack_webhook', false)) {
+    if (! get('slack_webhook', false)) {
         return;
     }
 
@@ -138,7 +139,7 @@ task('slack:notify:success', function () {
 
 desc('Notifying Slack about deploy failure');
 task('slack:notify:failure', function () {
-    if (!get('slack_webhook', false)) {
+    if (! get('slack_webhook', false)) {
         return;
     }
 
