@@ -70,7 +70,7 @@ task('build', function () {
 
 desc('Build Yarn Assets');
 task('yarn:build-assets', function () {
-    run("cd {{release_path}} && {{bin/yarn}} prod");
+    run('cd {{release_path}} && {{bin/yarn}} prod');
 });
 
 // [Optional] if deploy fails automatically unlock.
