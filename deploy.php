@@ -6,7 +6,7 @@ use Deployer\Utility\Httpie;
 
 require 'recipe/laravel.php';
 require 'recipe/slack.php';
-require 'recipe/yarn.php';
+require 'recipe/rsync.php';
 
 // Project name
 set('application', 'mapos');
@@ -19,12 +19,34 @@ set('git_tty', false);
 
 set('ssh_multiplexing', true); // Speed up deployment
 
-set('slack_webhook', env('SLACK_WEBHOOK', null));
+set('rsync_src', function () {
+    return __DIR__; // If your project isn't in the root, you'll need to change this.
+});
+
+set('slack_webhook', 'https://hooks.slack.com/services/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');
 
 // Deploy message
 set('slack_text', '_{{user}}_ fazendo deploy do branch: `{{branch}}` em: *{{target}}*');
 set('slack_success_text', 'Deploy em: *{{target}}* realizado com sucesso!');
 set('slack_failure_text', 'Deploy em: *{{target}}* falhou!');
+
+set('rsync_src', function () {
+    return __DIR__; // If your project isn't in the root, you'll need to change this.
+});
+
+// Configuring the rsync exclusions.
+// You'll want to exclude anything that you don't want on the production server.
+add('rsync', [
+    'exclude' => [
+        '.git',
+        '/.env',
+        '/storage/',
+        '/vendor/',
+        '/node_modules/',
+        '.github',
+        'deploy.php',
+    ],
+]);
 
 // Shared files/dirs between deploys
 add('shared_files', []);
@@ -42,13 +64,15 @@ host('mapos') // Name of the server
 
 // Tasks
 
-task('build', function () {
-    run('cd {{release_path}} && build');
+// Set up a deployer task to copy secrets to the server.
+// Grabs the dotenv file from the github secret
+task('deploy:secrets', function () {
+    file_put_contents(__DIR__.'/.env', getenv('DOT_ENV'));
+    upload('.env', get('deploy_path').'/shared');
 });
 
-desc('Build Yarn Assets');
-task('yarn:build-assets', function () {
-    run('cd {{release_path}} && {{bin/yarn}} prod');
+task('build', function () {
+    run('cd {{release_path}} && build');
 });
 
 // [Optional] if deploy fails automatically unlock.
@@ -64,12 +88,11 @@ task('deploy', [
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
-    'deploy:update_code',
+    'rsync', // Deploy code & built assets
+    'deploy:secrets', // Deploy secrets
     'deploy:shared',
     'deploy:vendors',
     'deploy:writable',
-    'yarn:install',
-    'yarn:build-assets',
     'artisan:storage:link', // |
     'artisan:view:cache',   // |
     'artisan:config:cache', // | Laravel specific steps
@@ -78,7 +101,6 @@ task('deploy', [
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
-    'slack:notify:success',
 ]);
 
 desc('Notifying Slack');
