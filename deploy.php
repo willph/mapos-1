@@ -19,34 +19,12 @@ set('git_tty', false);
 
 set('ssh_multiplexing', true); // Speed up deployment
 
-set('rsync_src', function () {
-    return __DIR__; // If your project isn't in the root, you'll need to change this.
-});
-
-set('slack_webhook', 'https://hooks.slack.com/services/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');
+set('slack_webhook', env('SLACK_WEBHOOK', null));
 
 // Deploy message
 set('slack_text', '_{{user}}_ fazendo deploy do branch: `{{branch}}` em: *{{target}}*');
 set('slack_success_text', 'Deploy em: *{{target}}* realizado com sucesso!');
 set('slack_failure_text', 'Deploy em: *{{target}}* falhou!');
-
-set('rsync_src', function () {
-    return __DIR__; // If your project isn't in the root, you'll need to change this.
-});
-
-// Configuring the rsync exclusions.
-// You'll want to exclude anything that you don't want on the production server.
-add('rsync', [
-    'exclude' => [
-        '.git',
-        '/.env',
-        '/storage/',
-        '/vendor/',
-        '/node_modules/',
-        '.github',
-        'deploy.php',
-    ],
-]);
 
 // Shared files/dirs between deploys
 add('shared_files', []);
