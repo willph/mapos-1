@@ -2,7 +2,6 @@ name: Tests
 
 on:
   push:
-  pull_request:
   schedule:
     - cron: '0 0 * * *'
 
@@ -15,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['7.2', '7.3', '7.4']
+        php: ['7.3', '7.4']
 
     steps:
       - name: Checkout code

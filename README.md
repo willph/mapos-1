@@ -13,7 +13,7 @@
 
 ## Requerimentos
 
-* PHP 7.2 ou superior
+* PHP 7.3 ou superior
 * Banco de dados (por exemplo: MySQL, PostgreSQL, SQLite)
 * Servidor Web (por exemplo: Apache, Nginx, IIS)
 
@@ -31,7 +31,7 @@ Map-OS usa o [Laravel](http://laravel.com), o melhor framework PHP atualmente, c
 * Configure as variáveis de ambiente e a conexão com o banco de dados no arquivo .env
 * Rode os seeders `php artisan migrate:fresh --seed`
 * Rode `php artisan key:generate`
-* Rode `php artisan serve` para iniciar o servidor. 
+* Rode `php artisan serve` para iniciar o servidor.
 * Acesse o Map-OS no navegador: http://localhost:8000 ou url que você configurar.
 * E logue com as credenciais
 
