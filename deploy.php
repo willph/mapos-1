@@ -23,7 +23,7 @@ set('rsync_src', function () {
     return __DIR__; // If your project isn't in the root, you'll need to change this.
 });
 
-set('slack_webhook', 'https://hooks.slack.com/services/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');
+set('slack_webhook', getenv('SLACK_WEBHOOK'));
 
 // Deploy message
 set('slack_text', '_{{user}}_ fazendo deploy do branch: `{{branch}}` em: *{{target}}*');
