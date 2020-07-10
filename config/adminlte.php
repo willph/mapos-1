@@ -188,7 +188,7 @@ return [
 
     'use_route_url' => false,
 
-    'dashboard_url' => 'dashboard',
+    'dashboard_url' => 'admin/dashboard',
 
     'logout_url' => 'logout',
 
@@ -232,6 +232,14 @@ return [
 
     'menu' => [
         [
+            'search' => true,
+            'url' => 'test',                     // the form action
+            'method' => 'POST',                  // the form method
+            'input_name' => 'menu-search-input', // the input name
+            'text' => 'search',                  // the input placeholder
+            'topnav_right' => true,
+        ],
+        [
             'text' => 'dashboard',
             'route'  => 'admin.dashboard.index',
             'icon' => 'fas fa-fw fa-home',
@@ -256,16 +264,121 @@ return [
             'active' => ['regex:@^admin/services.*$@'],
         ],
         [
+            'text' => 'service_orders',
+            'url'  => '',
+            'icon' => 'fas fa-diagnoses',
+            'active' => ['regex:@^admin/services.*$@'],
+        ],
+        [
+            'text' => 'sales',
+            'url'  => '',
+            'icon' => 'fas fa-cash-register',
+            'active' => ['admin/sales'],
+        ],
+        [
+            'text' => 'warranty_terms',
+            'url'  => '',
+            'icon' => 'fas fa-book',
+            'active' => ['admin/warranty_terms'],
+        ],
+        [
+            'text' => 'files',
+            'url'  => '',
+            'icon' => 'fas fa-hdd',
+            'active' => ['admin/files'],
+        ],
+        [
+            'text' => 'finances',
+            'icon' => 'fas fa-hand-holding-usd',
+            'submenu' => [
+                [
+                    'text' => 'entries',
+                    'route'  => 'admin.users.index',
+                    'active' => ['regex:@^admin/finances.*$@'],
+                ],
+            ],
+        ],
+        [
+            'text' => 'reports',
+            'icon' => 'fas fa-list-alt  ',
+            'submenu' => [
+                [
+                    'text' => 'customers',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+                [
+                    'text' => 'products',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+                [
+                    'text' => 'services',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+                [
+                    'text' => 'service_orders',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+                [
+                    'text' => 'sales',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+                [
+                    'text' => 'finances',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/reports.*$@'],
+                ],
+            ],
+        ],
+        [
             'text' => 'configurations',
             'icon' => 'fas fa-fw fa-cog',
             'submenu' => [
                 [
+                    'text' => 'application',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/application.*$@'],
+                ],
+                [
                     'text' => 'users',
                     'route'  => 'admin.users.index',
-                    'icon' => 'fas fa-fw fa-user',
                     'active' => ['regex:@^admin/users.*$@'],
                 ],
+                [
+                    'text' => 'issuer',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/issuer.*$@'],
+                ],
+                [
+                    'text' => 'permissions',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/permissions.*$@'],
+                ],
+                [
+                    'text' => 'audit',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/audit.*$@'],
+                ],
+                [
+                    'text' => 'emails',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/emails.*$@'],
+                ],
+                [
+                    'text' => 'backup',
+                    'url'  => '',
+                    'active' => ['regex:@^admin/emails.*$@'],
+                ],
             ],
+        ],
+        [
+            'text' => 'logout',
+            'route'  => 'logout',
+            'icon' => 'fas fa-sign-out-alt',
         ],
     ],
 

@@ -24,5 +24,22 @@ return [
     'configurations'                => 'Configurações',
     'customers'                     => 'Clientes',
     'products'                      => 'Produtos',
+    'service_orders'                => 'Ordens de Serviço',
+    'sales'                         => 'Vendas',
+    'warranty_terms'                => 'Termos de Garantia',
+    'files'                         => 'Arquivos',
+    'finances'                      => 'Financeiro',
+    'reports'                       => 'Relatórios',
+    'logout'                        => 'Sair',
 
+    'entries'                       => 'Lançamentos',
+
+
+    'application'                   => 'Sistema',
+    'issuer'                        => 'Emitente',
+    'permissions'                   => 'Permissões',
+    'audit'                         => 'Auditoria',
+    'emails'                        => 'Emails',
+    'backup'                        => 'Backup',
+    'search'                        => 'Pesquisar',
 ];
