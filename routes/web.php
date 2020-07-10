@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Auth::routes([
 ]);
 
 Route::redirect('/', '/login');
+
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::group([
     'prefix' => 'admin',

@@ -43,7 +43,7 @@ class LoginControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_logout_and_redirects_user()
+    public function it_logout_and_redirects_user_using_post_request()
     {
         $user = factory(User::class)->create();
 
@@ -52,6 +52,21 @@ class LoginControllerTest extends TestCase
         $this->assertAuthenticatedAs($user);
 
         $response = $this->post(route('logout'));
+
+        $response->assertRedirect('/');
+        $this->assertFalse($this->isAuthenticated());
+    }
+
+    /** @test */
+    public function it_logout_and_redirects_user_using_get_request()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user);
+
+        $this->assertAuthenticatedAs($user);
+
+        $response = $this->get(route('logout'));
 
         $response->assertRedirect('/');
         $this->assertFalse($this->isAuthenticated());
