@@ -40,6 +40,32 @@ Login: admin@admin.com
 Senha: admin
 ```
 
+## Dependências de front-end
+
+Ao atualizar dependências de front-end ou alterar arquivos CSS ou JS você precisará seguir as instruções abaixo.
+
+1. Garanta que tenha o Node instalado.
+2. Faça download do Gulp com o comando abaixo no seu terminal.
+
+```
+npm install gulp-cli -g
+```
+
+3. Depois de instalado o Gulp, rode npm install na raiz do projeto.
+
+```
+npm install
+```
+
+4. Execute o comando abaixo para compilar o CSS e JS:
+
+```
+gulp build:dist
+```
+
+Este comando irá gerarr os arquivos dentro da pasta `public` com os arquivos CSS, e JavaScript minificados.
+
+
 ## Contribuindo
 
 Por favor, seja muito claro em suas pull requests, as pull requests podem ser rejeitadas sem motivo.
