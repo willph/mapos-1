@@ -1,17 +1,19 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('title', @trans('messages.create_customer'))
 
 @section('content_header')
-    <div class="p-2">
+<div class="d-flex justify-content-between w-100 flex-wrap">
+    <div class="mb-3 mb-lg-0">
         <h2>{{ @trans('messages.create_customer') }}</h2>
     </div>
+    <div><a class="btn btn-primary" href="{{ route('admin.customers.index') }}">{{ __('messages.go_back') }}</a></div>
+</div>
+
 @stop
 
 @section('content')
-    <div class="card card-primary">
-        @include('admin.customers._form', ['customer' => $customer])
-    </div>
+@include('admin.customers._form', ['customer' => $customer])
 @stop
 
 @section('js')

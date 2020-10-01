@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $customers = Customer::paginate(10);
+        $customers = Customer::paginate(1);
 
         return view('admin.customers.index', compact('customers'));
     }
@@ -90,6 +90,8 @@ class CustomerController extends Controller
     {
         $customer->delete();
 
-        return response()->json($customer);
+        return redirect()->route('admin.customers.index')
+                        ->with('success','Cliente excluído com sucesso.');
+
     }
 }

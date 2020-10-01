@@ -17,6 +17,7 @@ return [
     'updated_at' => 'Atualizado em',
     'go_back' => 'Voltar',
     'view' => 'Visualizar',
+    'search' => 'Pesquisar',
     'edit' => 'Editar',
     'delete' => 'Excluir',
     'price' => 'Preço',
