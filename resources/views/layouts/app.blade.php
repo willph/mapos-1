@@ -23,6 +23,8 @@
 
     @yield('css')
 
+    @livewireStyles
+
 </head>
 
 <body class="bg-soft">
@@ -107,12 +109,14 @@
     <!-- Notyf -->
     <script src="{{ asset('vendor/notyf/notyf.min.js') }}"></script>
     <!-- Datepicker -->
-    <script src="{{ asset('vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script>
+    <!-- <script src="{{ asset('vendor/vanillajs-datepicker/dist/js/datepicker.min.js') }}"></script> -->
     <!-- Simplebar -->
     <script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
 
     <script src="{{ asset('js/app-min.js') }}" defer></script>
     @yield('js')
+
+    @livewireScripts
 
 </body>
 
