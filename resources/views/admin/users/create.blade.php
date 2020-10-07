@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', @trans('messages.create_user'))
+@section('title', __('messages.create_user'))
 
 @section('content_header')
     <div class="p-2">
-        <h2>{{ @trans('messages.create_user') }}</h2>
+        <h2>{{ __('messages.create_user') }}</h2>
     </div>
 @stop
 

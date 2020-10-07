@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Services;
+namespace App\Http\Livewire\Products;
 
 use Livewire\Component;
+use App\Models\Product;
 use Livewire\WithPagination;
-use App\Models\Service;
 
 class Index extends Component
 {
@@ -21,16 +21,16 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.services.index', [
-            'services' => Service::where('name', 'like', $this->search . '%')->paginate(10),
+        return view('livewire.products.index', [
+            'products' => Product::where('name', 'like', $this->search . '%')->paginate(10),
         ]);
     }
 
     public function destroy($id)
     {
         if ($id) {
-            $service = Service::where('id', $id);
-            $service->delete();
+            $product = Product::where('id', $id);
+            $product->delete();
 
             session()->flash('alert-success', __('messages.deleted_success'));
         }

@@ -2,7 +2,7 @@
 
 @section('content_header')
     <div class="p-2">
-        <h2>{{ @trans('messages.edit_service') }}</h2>
+        <h2>{{ __('messages.edit_service') }}</h2>
     </div>
 @stop
 

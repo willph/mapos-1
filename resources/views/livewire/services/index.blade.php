@@ -19,14 +19,14 @@
     <div class="row">
         <div class="col-sm-12">
 
-            <table class="table table-bordered table-condensed">
-                <thead>
+            <table class="table table-sm table-hover table-centered table-nowrap mb-0">
+                <thead class="thead-light">
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">{{ @trans('messages.name') }}</th>
-                        <th class="text-center">{{ @trans('messages.description') }}</th>
-                        <th class="text-center">{{ @trans('messages.price') }}</th>
-                        <th class="text-center">{{ @trans('messages.actions') }}</th>
+                        <th class="text-center">{{__('messages.name') }}</th>
+                        <th class="text-center">{{__('messages.description') }}</th>
+                        <th class="text-center">{{__('messages.price') }}</th>
+                        <th class="text-center">{{__('messages.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                     </tr>
                     @empty
                     <tr class="text-center">
-                        <td colspan="5">{{ @trans('messages.no_records') }}</td>
+                        <td colspan="5">{{ __('messages.no_records') }}</td>
                     </tr>
                     @endforelse
                 </tbody>

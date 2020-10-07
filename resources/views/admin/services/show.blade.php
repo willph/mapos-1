@@ -16,30 +16,30 @@
     <table class="table table-bordered table-striped">
         <tbody>
             <tr>
-                <td class="w-50">{{ @trans('messages.name') }}</td>
+                <td class="w-50">{{ __('messages.name') }}</td>
                 <td class="w-50">{{ $service->name }}</td>
             </tr>
             <tr>
-                <td class="w-50">{{ @trans('messages.description') }}</td>
+                <td class="w-50">{{ __('messages.description') }}</td>
                 <td class="w-50">{{ $service->description }}</td>
             </tr>
             <tr>
-                <td class="w-50">{{ @trans('messages.price') }}</td>
+                <td class="w-50">{{ __('messages.price') }}</td>
                 <td class="w-50">{{ $service->price }}</td>
             </tr>
             <tr>
-                <td class="w-50">{{ @trans('messages.created_at') }}</td>
+                <td class="w-50">{{ __('messages.created_at') }}</td>
                 <td class="w-50">@datetime($service->created_at)</td>
             </tr>
             <tr>
-                <td class="w-50">{{ @trans('messages.updated_at') }}</td>
+                <td class="w-50">{{ __('messages.updated_at') }}</td>
                 <td class="w-50">@datetime($service->updated_at)</td>
             </tr>
         </tbody>
     </table>
 
     <div class="mt-3">
-        <a href="{{ route('admin.services.index') }}" class="btn btn-primary">{{ @trans('messages.go_back') }}</a>
+        <a href="{{ route('admin.services.index') }}" class="btn btn-light"><i class="fa fa-arrow-left"></i> {{ __('messages.go_back') }}</a>
     </div>
 </div>
 @stop
