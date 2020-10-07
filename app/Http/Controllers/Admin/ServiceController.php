@@ -78,5 +78,4 @@ class ServiceController extends Controller
             ->route('admin.services.index')
             ->with(['alert-success' => __('messages.updated_success')]);
     }
-
 }

@@ -78,5 +78,4 @@ class CustomerController extends Controller
             ->route('admin.customers.index')
             ->with(['alert-success' => __('messages.updated_success')]);
     }
-
 }

@@ -8,7 +8,6 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
@@ -23,13 +22,13 @@ class Index extends Component
     public function render()
     {
         return view('livewire.customers.index', [
-            'customers' => Customer::where('name', 'like', $this->search . '%')->paginate(10),
+            'customers' => Customer::where('name', 'like', $this->search.'%')->paginate(10),
         ]);
     }
 
     public function destroy($id)
     {
-        if($id){
+        if ($id) {
             $customer = Customer::where('id', $id);
             $customer->delete();
 

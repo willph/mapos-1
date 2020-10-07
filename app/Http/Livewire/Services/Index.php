@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Services;
 
+use App\Models\Service;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Service;
 
 class Index extends Component
 {
@@ -22,7 +22,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.services.index', [
-            'services' => Service::where('name', 'like', $this->search . '%')->paginate(10),
+            'services' => Service::where('name', 'like', $this->search.'%')->paginate(10),
         ]);
     }
 
