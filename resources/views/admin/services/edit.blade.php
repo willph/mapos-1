@@ -1,6 +1,4 @@
-@extends('adminlte::page')
-
-@section('title', @trans('messages.edit_service'))
+@extends('layouts.app')
 
 @section('content_header')
     <div class="p-2">
@@ -9,9 +7,7 @@
 @stop
 
 @section('content')
-    <div class="card card-primary">
-        @include('admin.services._form', ['service' => $service])
-    </div>
+    @include('admin.services._form', ['service' => $service])
 @stop
 
 @section('js')

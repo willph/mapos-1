@@ -16,9 +16,7 @@ class ServiceController extends Controller
      */
     public function index(Request $request)
     {
-        $services = Service::paginate(10);
-
-        return view('admin.services.index', compact('services'));
+        return view('admin.services.index');
     }
 
     /**
@@ -44,7 +42,7 @@ class ServiceController extends Controller
 
         return redirect()
             ->route('admin.services.index')
-            ->with(['alert-success' => 'Serviço criado com sucesso!']);
+            ->with(['alert-success' => __('messages.created_success')]);
     }
 
     /**
@@ -78,18 +76,7 @@ class ServiceController extends Controller
 
         return redirect()
             ->route('admin.services.index')
-            ->with(['alert-success' => 'Serviço editado com sucesso!']);
+            ->with(['alert-success' => __('messages.updated_success')]);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Service $service
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Service $service)
-    {
-        $service->delete();
-
-        return response()->json($service);
-    }
 }

@@ -41,7 +41,7 @@
 
                             <div class="btn-group"><button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="icon icon-sm"><span class="fas fa-ellipsis-h icon-dark"></span> </span>
-                                    <span class="sr-only">Ações</span></button>
+                                    <span class="sr-only">__('messages.actions')</span></button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{ route('admin.customers.show', $customer) }}"><span class="fas fa-eye mr-2"></span>{{ __('messages.view') }}</a>
                                     <a class="dropdown-item" href="{{ route('admin.customers.edit', $customer) }}"><span class="fas fa-edit mr-2"></span>{{ __('messages.edit') }}</a>

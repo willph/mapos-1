@@ -158,13 +158,11 @@
                 </div>
             </div>
 
-            <div class="col-sm-6">
-                <div class="mb-5">
-                    <button type="submit" class="btn btn-primary">{{ @trans('messages.save') }}</button>
-                </div>
-            </div>
+        </div>
 
-
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> {{ @trans('messages.save') }}</button>
+            <a class="btn btn-light" href="{{ route('admin.customers.index') }}"><i class="fa fa-arrow-left"></i> {{ __('messages.go_back') }}</a>
         </div>
 
     </form>

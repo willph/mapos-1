@@ -8,9 +8,7 @@
     <div class="mb-3 mb-lg-0">
         <h2>{{ __('messages.view_customer') }}</h2>
     </div>
-    <div>
-        <a href="{{ route('admin.customers.index') }}" class="btn btn-primary">{{ @trans('messages.go_back') }}</a>
-    </div>
+
 </div>
 
 @stop
@@ -81,6 +79,10 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="mt-3">
+        <a href="{{ route('admin.customers.index') }}" class="btn btn-light"> <i class="fa fa-arrow-left"></i> {{ @trans('messages.go_back') }}</a>
+    </div>
 
 </div>
 @stop
