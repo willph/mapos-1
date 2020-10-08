@@ -33,6 +33,7 @@ class ServiceControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.services.index');
+        $response->assertSeeLivewire('services.index');
     }
 
     /**

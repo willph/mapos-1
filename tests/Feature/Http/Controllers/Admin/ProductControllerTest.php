@@ -33,6 +33,7 @@ class ProductControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.products.index');
+        $response->assertSeeLivewire('products.index');
     }
 
     /**

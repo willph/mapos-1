@@ -33,6 +33,7 @@ class CustomerControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.customers.index');
+        $response->assertSeeLivewire('customers.index');
     }
 
     /**
