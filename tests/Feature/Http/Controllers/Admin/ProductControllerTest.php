@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Events\ProductCreatedEvent;
-use App\Events\ProductDeletedEvent;
 use App\Events\ProductUpdatedEvent;
 use App\Models\Product;
 use App\Models\User;

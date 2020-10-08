@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Events\UserCreatedEvent;
-use App\Events\UserDeletedEvent;
 use App\Events\UserUpdatedEvent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
