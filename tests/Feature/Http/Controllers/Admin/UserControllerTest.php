@@ -176,29 +176,4 @@ class UserControllerTest extends TestCase
             return $event->user->is($user);
         });
     }
-
-    /**
-     * @test
-     */
-    public function destroy_deletes()
-    {
-        $loggedUser = factory(User::class)->create();
-        $user = factory(User::class)->create();
-
-        Event::fake();
-
-        $response = $this->actingAs($loggedUser)->delete(route('admin.users.destroy', $user));
-
-        $response->assertJson([
-            'email' => $user->email,
-            'name' => $user->name,
-        ]);
-        $response->assertOk();
-
-        $this->assertDeleted($user);
-
-        Event::assertDispatched(UserDeletedEvent::class, function ($event) use ($user) {
-            return $event->user->is($user);
-        });
-    }
 }

@@ -4,7 +4,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>{{ config('app.name', 'Map-OS') }}</title>
+    <title>{{ config('map', 'Map-OS') }}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="title" content="Map-OS">
     <meta name="description" content="Sistema de Controle de Ordens de Serviço">

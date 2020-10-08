@@ -34,7 +34,6 @@ class ProductControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.products.index');
-        $response->assertViewHas('products');
     }
 
     /**
@@ -49,7 +48,6 @@ class ProductControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.products.create');
-        $response->assertViewHas('product');
     }
 
     /**
@@ -145,7 +143,6 @@ class ProductControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.products.edit');
-        $response->assertViewHas('product');
     }
 
     /**
@@ -207,39 +204,6 @@ class ProductControllerTest extends TestCase
         $response->assertRedirect(route('admin.products.index'));
 
         Event::assertDispatched(ProductUpdatedEvent::class, function ($event) use ($product) {
-            return $event->product->is($product);
-        });
-    }
-
-    /**
-     * @test
-     */
-    public function destroy_deletes()
-    {
-        $loggedUser = factory(User::class)->create();
-        $product = factory(Product::class)->create();
-
-        Event::fake();
-
-        $response = $this
-            ->actingAs($loggedUser)
-            ->delete(route('admin.products.destroy', $product));
-
-        $response->assertJson([
-            'name' => $product->name,
-            'description' => $product->description,
-            'barcode' => $product->barcode,
-            'purchase_price' => $product->purchase_price,
-            'sale_price' => $product->sale_price,
-            'unit' => $product->unit,
-            'quantity_in_stock' => $product->quantity_in_stock,
-            'minimum_quantity_in_stock' => $product->minimum_quantity_in_stock,
-        ]);
-        $response->assertOk();
-
-        $this->assertDeleted($product);
-
-        Event::assertDispatched(ProductDeletedEvent::class, function ($event) use ($product) {
             return $event->product->is($product);
         });
     }

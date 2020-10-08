@@ -34,7 +34,6 @@ class CustomerControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.customers.index');
-        $response->assertViewHas('customers');
     }
 
     /**
@@ -49,7 +48,6 @@ class CustomerControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.customers.create');
-        $response->assertViewHas('customer');
     }
 
     /**
@@ -143,7 +141,6 @@ class CustomerControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.customers.show');
-        $response->assertViewHas('customer');
     }
 
     /**
@@ -160,7 +157,6 @@ class CustomerControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.customers.edit');
-        $response->assertViewHas('customer');
     }
 
     /**
@@ -237,44 +233,6 @@ class CustomerControllerTest extends TestCase
         $response->assertRedirect(route('admin.customers.index'));
 
         Event::assertDispatched(CustomerUpdatedEvent::class, function ($event) use ($customer) {
-            return $event->customer->is($customer);
-        });
-    }
-
-    /**
-     * @test
-     */
-    public function destroy_deletes()
-    {
-        $loggedUser = factory(User::class)->create();
-        $customer = factory(Customer::class)->create();
-
-        Event::fake();
-
-        $response = $this
-            ->actingAs($loggedUser)
-            ->delete(route('admin.customers.destroy', $customer));
-
-        $response->assertJson([
-            'name' => $customer->name,
-            'document_number' => $customer->document_number,
-            'phone_number' => $customer->phone_number,
-            'mobile_phone_number' => $customer->mobile_phone_number,
-            'email' => $customer->email,
-            'postal_code' => $customer->postal_code,
-            'street_number' => $customer->street_number,
-            'street_name' => $customer->street_name,
-            'neighborhood' => $customer->neighborhood,
-            'city' => $customer->city,
-            'state' => $customer->state,
-            'complement' => $customer->complement,
-            'contact' => $customer->contact,
-        ]);
-        $response->assertOk();
-
-        $this->assertDeleted($customer);
-
-        Event::assertDispatched(CustomerDeletedEvent::class, function ($event) use ($customer) {
             return $event->customer->is($customer);
         });
     }

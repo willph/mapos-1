@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Events\ServiceCreatedEvent;
-use App\Events\ServiceDeletedEvent;
 use App\Events\ServiceUpdatedEvent;
 use App\Models\Service;
 use App\Models\User;
@@ -34,7 +33,6 @@ class ServiceControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.services.index');
-        $response->assertViewHas('services');
     }
 
     /**
@@ -49,7 +47,6 @@ class ServiceControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.services.create');
-        $response->assertViewHas('service');
     }
 
     /**
@@ -132,7 +129,6 @@ class ServiceControllerTest extends TestCase
 
         $response->assertOk();
         $response->assertViewIs('admin.services.edit');
-        $response->assertViewHas('service');
     }
 
     /**
@@ -181,34 +177,6 @@ class ServiceControllerTest extends TestCase
         $response->assertRedirect(route('admin.services.index'));
 
         Event::assertDispatched(ServiceUpdatedEvent::class, function ($event) use ($service) {
-            return $event->service->is($service);
-        });
-    }
-
-    /**
-     * @test
-     */
-    public function destroy_deletes()
-    {
-        $loggedUser = factory(User::class)->create();
-        $service = factory(Service::class)->create();
-
-        Event::fake();
-
-        $response = $this
-            ->actingAs($loggedUser)
-            ->delete(route('admin.services.destroy', $service));
-
-        $response->assertJson([
-            'name' => $service->name,
-            'description' => $service->description,
-            'price' => $service->price,
-        ]);
-        $response->assertOk();
-
-        $this->assertDeleted($service);
-
-        Event::assertDispatched(ServiceDeletedEvent::class, function ($event) use ($service) {
             return $event->service->is($service);
         });
     }
