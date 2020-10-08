@@ -16,9 +16,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $customers = Customer::paginate(10);
-
-        return view('admin.customers.index', compact('customers'));
+        return view('admin.customers.index');
     }
 
     /**
@@ -44,7 +42,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('admin.customers.index')
-            ->with(['alert-success' => 'Cliente criado com sucesso!']);
+            ->with(['alert-success' => __('messages.created_success')]);
     }
 
     /**
@@ -78,18 +76,6 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('admin.customers.index')
-            ->with(['alert-success' => 'Cliente editado com sucesso!']);
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Customer $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Customer $customer)
-    {
-        $customer->delete();
-
-        return response()->json($customer);
+            ->with(['alert-success' => __('messages.updated_success')]);
     }
 }

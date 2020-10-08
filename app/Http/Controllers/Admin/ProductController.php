@@ -16,9 +16,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(10);
-
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index');
     }
 
     /**
@@ -42,7 +40,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.products.index');
+        return redirect()
+            ->route('admin.products.index')
+            ->with(['alert-success' => __('messages.created_success')]);
     }
 
     /**
@@ -74,18 +74,8 @@ class ProductController extends Controller
     {
         $product->update($request->validated());
 
-        return redirect()->route('admin.products.index');
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, Product $product)
-    {
-        $product->delete();
-
-        return response()->json($product);
+        return redirect()
+            ->route('admin.products.index')
+            ->with(['alert-success' => __('messages.updated_success')]);
     }
 }

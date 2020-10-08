@@ -1,14 +1,14 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', @trans('messages.users'))
+@section('title', __('messages.users'))
 
 @section('content_header')
     <div class="p-2">
         <div class="float-left">
-            <h2>{{ @trans('messages.users') }}</h2>
+            <h2>{{ __('messages.users') }}</h2>
         </div>
         <div class="float-right">
-            <a class="btn btn-xs btn-primary btn-" href="{{ route('admin.users.create') }}">{{ @trans('messages.create_user') }}</a>
+            <a class="btn btn-xs btn-primary btn-" href="{{ route('admin.users.create') }}">{{ __('messages.create_user') }}</a>
         </div>
     </div>
 @stop
@@ -21,9 +21,9 @@
                 <thead>
                 <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">{{ @trans('messages.name') }}</th>
-                    <th class="text-center">{{ @trans('messages.email') }}</th>
-                    <th class="text-center">{{ @trans('messages.actions') }}</th>
+                    <th class="text-center">{{ __('messages.name') }}</th>
+                    <th class="text-center">{{ __('messages.email') }}</th>
+                    <th class="text-center">{{ __('messages.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,19 +34,19 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user) }}">
-                                {{ @trans('messages.view') }}
+                                {{ __('messages.view') }}
                             </a>
                             <a class="btn btn-xs btn-warning" href="{{ route('admin.users.edit', $user) }}">
-                                {{ @trans('messages.edit') }}
+                                {{ __('messages.edit') }}
                             </a>
                             <button type="button" class="btn btn-xs btn-danger destroy" data-id="{{ $user->getKey() }}">
-                                {{ @trans('messages.delete') }}
+                                {{ __('messages.delete') }}
                             </button>
                         </td>
                     </tr>
                 @empty
                     <tr class="text-center">
-                        <td colspan="4">{{ @trans('messages.no_records') }}</td>
+                        <td colspan="4">{{ __('messages.no_records') }}</td>
                     </tr>
                 @endforelse
                 </tbody>
@@ -64,9 +64,9 @@
          $('.destroy').on('click', function () {
              var id = $(this).data('id');
              Swal.fire({
-                 title: "{{ @trans('messages.confirm_user_delete') }}",
-                 confirmButtonText: "{{ @trans('messages.confirm') }}",
-                 cancelButtonText: "{{ @trans('messages.cancel') }}",
+                 title: "{{ __('messages.confirm_user_delete') }}",
+                 confirmButtonText: "{{ __('messages.confirm') }}",
+                 cancelButtonText: "{{ __('messages.cancel') }}",
                  showCancelButton: true,
                  showCloseButton: true
              })
@@ -84,7 +84,7 @@
                      success: function (xhr) {
                          Swal.fire({
                              icon: 'success',
-                             title: "{{ @trans('messages.user_deleted_success') }}",
+                             title: "{{ __('messages.user_deleted_success') }}",
                              showConfirmButton: false,
                              timer: 1500
                          })
@@ -95,7 +95,7 @@
                      error: function (xhr) {
                          Swal.fire({
                              icon: 'error',
-                             title: "{{ @trans('messages.user_deleted_fail') }}",
+                             title: "{{ __('messages.user_deleted_fail') }}",
                              showConfirmButton: true,
                              timer: 1500
                          });

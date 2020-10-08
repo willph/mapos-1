@@ -1,18 +1,18 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', @trans('messages.edit_customer'))
+@section('title', __('messages.edit_customer'))
 
 @section('content_header')
-    <div class="p-2">
-        <h2>{{ @trans('messages.edit_customer') }}</h2>
+
+<div class="d-flex justify-content-between w-100 flex-wrap">
+    <div class="mb-3 mb-lg-0">
+        <h2>{{ __('messages.edit_customer') }}</h2>
     </div>
+</div>
+
 @stop
 
 @section('content')
-    <div class="card card-primary">
-        @include('admin.customers._form', ['customer' => $customer])
-    </div>
+    @include('admin.customers._form', ['customer' => $customer])
 @stop
 
-@section('js')
-@endsection

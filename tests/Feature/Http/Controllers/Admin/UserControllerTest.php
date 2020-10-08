@@ -3,7 +3,6 @@
 namespace Tests\Feature\Http\Controllers\Admin;
 
 use App\Events\UserCreatedEvent;
-use App\Events\UserDeletedEvent;
 use App\Events\UserUpdatedEvent;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -173,31 +172,6 @@ class UserControllerTest extends TestCase
         $user = $users->first();
 
         Event::assertDispatched(UserUpdatedEvent::class, function ($event) use ($user) {
-            return $event->user->is($user);
-        });
-    }
-
-    /**
-     * @test
-     */
-    public function destroy_deletes()
-    {
-        $loggedUser = factory(User::class)->create();
-        $user = factory(User::class)->create();
-
-        Event::fake();
-
-        $response = $this->actingAs($loggedUser)->delete(route('admin.users.destroy', $user));
-
-        $response->assertJson([
-            'email' => $user->email,
-            'name' => $user->name,
-        ]);
-        $response->assertOk();
-
-        $this->assertDeleted($user);
-
-        Event::assertDispatched(UserDeletedEvent::class, function ($event) use ($user) {
             return $event->user->is($user);
         });
     }

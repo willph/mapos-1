@@ -1,10 +1,10 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', @trans('messages.edit_user'))
+@section('title', __('messages.edit_user'))
 
 @section('content_header')
     <div class="p-2">
-        <h2>{{ @trans('messages.edit_user') }}</h2>
+        <h2>{{ __('messages.edit_user') }}</h2>
     </div>
 @stop
 
