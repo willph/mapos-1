@@ -28,11 +28,11 @@ class Index extends Component
 
     public function destroy($id)
     {
-        if ($id) {
-            $customer = Customer::where('id', $id);
-            $customer->delete();
-
-            session()->flash('alert-success', __('messages.deleted_success'));
+        if (! $id) {
+            return;
         }
+
+        Customer::query()->where('id', $id)->delete();
+        session()->flash('alert-success', __('messages.deleted_success'));
     }
 }

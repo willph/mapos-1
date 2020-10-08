@@ -67,6 +67,6 @@ class IndexTest extends TestCase
         Livewire::test(Index::class)
             ->call('destroy', $product->getKey());
 
-        $this->assertDatabaseMissing('products', $product->toArray());
+        $this->assertDatabaseMissing('products', ['id' => $product->getKey()]);
     }
 }
