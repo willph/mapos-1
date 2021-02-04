@@ -1438,16 +1438,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.3.11",
+            "version": "v2.3.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "5036ba31571c7ec3feca9a171e96e33628bab5ea"
+                "reference": "3ead3ff1342d9b17c7fd3559fd1a5f880cf78f28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/5036ba31571c7ec3feca9a171e96e33628bab5ea",
-                "reference": "5036ba31571c7ec3feca9a171e96e33628bab5ea",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/3ead3ff1342d9b17c7fd3559fd1a5f880cf78f28",
+                "reference": "3ead3ff1342d9b17c7fd3559fd1a5f880cf78f28",
                 "shasum": ""
             },
             "require": {
@@ -1502,7 +1502,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-03T01:16:27+00:00"
+            "time": "2021-02-03T23:14:23+00:00"
         },
         {
             "name": "monolog/monolog",
