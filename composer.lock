@@ -5987,16 +5987,16 @@
         },
         {
             "name": "jasonmccreary/laravel-test-assertions",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmccreary/laravel-test-assertions.git",
-                "reference": "3ead0117ce53d2b64ce6a6caa5db26f2188712ae"
+                "reference": "163c9df0a68a6fb7c39827292a315408bcea27cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jasonmccreary/laravel-test-assertions/zipball/3ead0117ce53d2b64ce6a6caa5db26f2188712ae",
-                "reference": "3ead0117ce53d2b64ce6a6caa5db26f2188712ae",
+                "url": "https://api.github.com/repos/jasonmccreary/laravel-test-assertions/zipball/163c9df0a68a6fb7c39827292a315408bcea27cc",
+                "reference": "163c9df0a68a6fb7c39827292a315408bcea27cc",
                 "shasum": ""
             },
             "require": {
@@ -6005,6 +6005,13 @@
                 "phpunit/phpunit": "^7.5|^8.0|^9.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JMac\\Testing\\AdditionalAssertionsServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "JMac\\Testing\\": "src/"
@@ -6021,7 +6028,7 @@
                 }
             ],
             "description": "A set of helpful assertions when testing Laravel applications.",
-            "time": "2020-04-03T15:14:24+00:00"
+            "time": "2021-02-20T13:23:21+00:00"
         },
         {
             "name": "laravel-shift/blueprint",
@@ -7198,12 +7205,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "640ff0b5dcacc0958534c8c0255b90697f3eb2a8"
+                "reference": "616131e531dedfc378ffd6060e1cfdcce48ff3a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/640ff0b5dcacc0958534c8c0255b90697f3eb2a8",
-                "reference": "640ff0b5dcacc0958534c8c0255b90697f3eb2a8",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/616131e531dedfc378ffd6060e1cfdcce48ff3a2",
+                "reference": "616131e531dedfc378ffd6060e1cfdcce48ff3a2",
                 "shasum": ""
             },
             "conflict": {
@@ -7345,7 +7352,7 @@
                 "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
-                "pimcore/pimcore": "<6.3",
+                "pimcore/pimcore": "<6.8.8",
                 "pocketmine/pocketmine-mp": "<3.15.4",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
                 "prestashop/contactform": ">1.0.1,<4.3",
@@ -7513,7 +7520,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-18T21:02:27+00:00"
+            "time": "2021-02-25T17:25:28+00:00"
         },
         {
             "name": "sebastian/cli-parser",
