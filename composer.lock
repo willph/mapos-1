@@ -6029,16 +6029,16 @@
         },
         {
             "name": "laravel-shift/blueprint",
-            "version": "v1.22.0",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-shift/blueprint.git",
-                "reference": "d4d54ccfbea58eb733d07ed07993f0e9b90ac1cf"
+                "reference": "9865ae885b2df5b62421641579b137077e40607c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-shift/blueprint/zipball/d4d54ccfbea58eb733d07ed07993f0e9b90ac1cf",
-                "reference": "d4d54ccfbea58eb733d07ed07993f0e9b90ac1cf",
+                "url": "https://api.github.com/repos/laravel-shift/blueprint/zipball/9865ae885b2df5b62421641579b137077e40607c",
+                "reference": "9865ae885b2df5b62421641579b137077e40607c",
                 "shasum": ""
             },
             "require": {
@@ -6079,7 +6079,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2021-02-23T15:47:23+00:00"
+            "time": "2021-03-19T19:03:02+00:00"
         },
         {
             "name": "laravel-shift/faker-registry",
@@ -8743,16 +8743,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.2.3",
+            "version": "v5.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "338cddc6d74929f6adf19ca5682ac4b8e109cdb0"
+                "reference": "298a08ddda623485208506fcee08817807a251dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/338cddc6d74929f6adf19ca5682ac4b8e109cdb0",
-                "reference": "338cddc6d74929f6adf19ca5682ac4b8e109cdb0",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/298a08ddda623485208506fcee08817807a251dd",
+                "reference": "298a08ddda623485208506fcee08817807a251dd",
                 "shasum": ""
             },
             "require": {
@@ -8811,7 +8811,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-03T04:42:09+00:00"
+            "time": "2021-03-06T07:59:01+00:00"
         },
         {
             "name": "theseer/tokenizer",
