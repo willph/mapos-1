@@ -919,16 +919,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.37.0",
+            "version": "v8.38.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cf4082973abc796ec285190f0603380021f6d26f"
+                "reference": "26a73532c54d2c090692bf2e3e64e449669053ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cf4082973abc796ec285190f0603380021f6d26f",
-                "reference": "cf4082973abc796ec285190f0603380021f6d26f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/26a73532c54d2c090692bf2e3e64e449669053ba",
+                "reference": "26a73532c54d2c090692bf2e3e64e449669053ba",
                 "shasum": ""
             },
             "require": {
@@ -1079,7 +1079,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2021-04-13T13:49:49+00:00"
+            "time": "2021-04-20T13:50:21+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4423,16 +4423,16 @@
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "e2eaa60b558f26a4b0354e1bbb25636efaaad105"
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/e2eaa60b558f26a4b0354e1bbb25636efaaad105",
-                "reference": "e2eaa60b558f26a4b0354e1bbb25636efaaad105",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/95c812666f3e91db75385749fe219c5e494c7f95",
+                "reference": "95c812666f3e91db75385749fe219c5e494c7f95",
                 "shasum": ""
             },
             "require": {
@@ -4444,7 +4444,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -4494,7 +4494,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-28T13:05:58+00:00"
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/var-dumper",
