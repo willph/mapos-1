@@ -22,13 +22,13 @@ class Index extends Component
     public function render()
     {
         return view('livewire.warrantys.index', [
-            'warrantys' => Warranty::where('ref_warranty', 'like', $this->search.'%')->paginate(10),
+            'warrantys' => Warranty::where('ref_warranty', 'like', $this->search . '%')->paginate(10),
         ]);
     }
 
     public function destroy($id)
     {
-        if (! $id) {
+        if (!$id) {
             return;
         }
 

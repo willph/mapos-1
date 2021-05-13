@@ -12,4 +12,3 @@
 @section('content')
     @include('admin.warrantys._form', ['warranty' => $warranty])
 @stop
-

@@ -87,8 +87,5 @@ class WarrantyController extends Controller
         return redirect()
             ->route('admin.warrantys.index')
             ->with(['alert-success' => __('messages.updated_success')]);
-
     }
-
-
 }

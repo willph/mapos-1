@@ -10,8 +10,10 @@
             </a>
         </div>
         <div class="col col-sm-4">
-            <div class="input-group"><span class="input-group-text" id="basic-addon2"><span class="fas fa-search"></span></span>
-                <input type="text" wire:model="search" class="form-control" placeholder="{{ __('messages.search') }}...">
+            <div class="input-group"><span class="input-group-text" id="basic-addon2"><span
+                        class="fas fa-search"></span></span>
+                <input type="text" wire:model="search" class="form-control"
+                    placeholder="{{ __('messages.search') }}...">
             </div>
         </div>
     </div>
@@ -23,36 +25,45 @@
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center">#</th>
-                        <th class="text-center">{{__('messages.name') }}</th>
-                        <th class="text-center">{{__('messages.description') }}</th>
-                        <th class="text-center">{{__('messages.price') }}</th>
-                        <th class="text-center">{{__('messages.actions') }}</th>
+                        <th class="text-center">{{ __('messages.name') }}</th>
+                        <th class="text-center">{{ __('messages.description') }}</th>
+                        <th class="text-center">{{ __('messages.price') }}</th>
+                        <th class="text-center">{{ __('messages.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($services as $service)
-                    <tr class="text-center">
-                        <td>{{ $service->getKey() }}</td>
-                        <td>{{ $service->name }}</td>
-                        <td>{{ $service->description }}</td>
-                        <td>{{ $service->price }}</td>
-                        <td>
-                            <div class="btn-group"><button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="icon icon-sm"><span class="fas fa-ellipsis-h icon-dark"></span> </span>
-                                    <span class="sr-only">__('messages.actions')</span></button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('admin.services.show', $service) }}"><span class="fas fa-eye mr-2"></span>{{ __('messages.view') }}</a>
-                                    <a class="dropdown-item" href="{{ route('admin.services.edit', $service) }}"><span class="fas fa-edit mr-2"></span>{{ __('messages.edit') }}</a>
-                                    <a class="dropdown-item text-danger" wire:click="destroy({{ $service->id }})" href="#"><span class="fas fa-trash-alt mr-2"></span>{{ __('messages.delete') }}</a>
+                        <tr class="text-center">
+                            <td>{{ $service->getKey() }}</td>
+                            <td>{{ $service->name }}</td>
+                            <td>{{ $service->description }}</td>
+                            <td>{{ $service->price }}</td>
+                            <td>
+                                <div class="btn-group"><button
+                                        class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="icon icon-sm"><span class="fas fa-ellipsis-h icon-dark"></span>
+                                        </span>
+                                        <span class="sr-only">__('messages.actions')</span></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item"
+                                            href="{{ route('admin.services.show', $service) }}"><span
+                                                class="fas fa-eye mr-2"></span>{{ __('messages.view') }}</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('admin.services.edit', $service) }}"><span
+                                                class="fas fa-edit mr-2"></span>{{ __('messages.edit') }}</a>
+                                        <a class="dropdown-item text-danger" wire:click="destroy({{ $service->id }})"
+                                            href="#"><span
+                                                class="fas fa-trash-alt mr-2"></span>{{ __('messages.delete') }}</a>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     @empty
-                    <tr class="text-center">
-                        <td colspan="5">{{ __('messages.no_records') }}</td>
-                    </tr>
+                        <tr class="text-center">
+                            <td colspan="5">{{ __('messages.no_records') }}</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
